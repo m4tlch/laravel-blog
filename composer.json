@@ -45,7 +45,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "M4tlch\\LaravelBlog\\BlogEtcServiceProvider"
+        "M4tlch\\LaravelBlog\\M4BlogServiceProvider"
       ],
       "aliases": {
       }
