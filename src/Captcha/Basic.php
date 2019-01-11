@@ -1,8 +1,8 @@
-<?php namespace WebDevEtc\BlogEtc\Captcha;
+<?php namespace M4tlch\LaravelBlog\Captcha;
 
 /**
  * Class Basic
- * @package WebDevEtc\BlogEtc\Captcha
+ * @package M4tlch\LaravelBlog\Captcha
  */
 class Basic extends CaptchaAbstract
 {

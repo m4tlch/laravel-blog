@@ -1,6 +1,6 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Requests;
+namespace M4tlch\LaravelBlog\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -47,7 +47,7 @@ class AddNewCommentRequest extends FormRequest
             /** @var string $captcha_class */
             $captcha_class = config("blogetc.captcha.captcha_type");
 
-            /** @var \WebDevEtc\BlogEtc\Interfaces\CaptchaInterface $captcha */
+            /** @var \M4tlch\LaravelBlog\Interfaces\CaptchaInterface $captcha */
             $captcha = new $captcha_class;
 
             $return[$captcha->captcha_field_name()] = $captcha->rules();

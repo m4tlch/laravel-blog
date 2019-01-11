@@ -1,8 +1,8 @@
-<?php namespace WebDevEtc\BlogEtc\Captcha;
+<?php namespace M4tlch\LaravelBlog\Captcha;
 
 use Illuminate\Http\Request;
-use WebDevEtc\BlogEtc\Interfaces\CaptchaInterface;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Interfaces\CaptchaInterface;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
 
 abstract class CaptchaAbstract implements CaptchaInterface
 {

@@ -1,18 +1,18 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Swis\LaravelFulltext\Search;
-use WebDevEtc\BlogEtc\Captcha\UsesCaptcha;
-use WebDevEtc\BlogEtc\Models\BlogEtcCategory;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Captcha\UsesCaptcha;
+use M4tlch\LaravelBlog\Models\BlogEtcCategory;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
 
 /**
  * Class BlogEtcReaderController
  * All of the main public facing methods for viewing blog content (index, single posts)
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcReaderController extends Controller
 {

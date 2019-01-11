@@ -1,6 +1,6 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Requests;
+namespace M4tlch\LaravelBlog\Requests;
 
 use Carbon\Carbon;
 

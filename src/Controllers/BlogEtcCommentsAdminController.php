@@ -1,18 +1,18 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use WebDevEtc\BlogEtc\Events\CommentApproved;
-use WebDevEtc\BlogEtc\Events\CommentWillBeDeleted;
-use WebDevEtc\BlogEtc\Helpers;
-use WebDevEtc\BlogEtc\Middleware\UserCanManageBlogPosts;
-use WebDevEtc\BlogEtc\Models\BlogEtcComment;
+use M4tlch\LaravelBlog\Events\CommentApproved;
+use M4tlch\LaravelBlog\Events\CommentWillBeDeleted;
+use M4tlch\LaravelBlog\Helpers;
+use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
+use M4tlch\LaravelBlog\Models\BlogEtcComment;
 
 /**
  * Class BlogEtcCommentsAdminController
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcCommentsAdminController extends Controller
 {

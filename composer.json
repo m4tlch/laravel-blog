@@ -30,7 +30,7 @@
     "cviebrock/eloquent-sluggable": "4.5.*|4.6.*",
     "illuminate/database": "~5.5.0|~5.6.0|~5.7.0",
     "illuminate/support": "~5.5.0|~5.6.0|~5.7.0",
-    "laravelium/feed" : "~2.12.0|~3.0.0",
+    "laravelium/feed": "~2.12.0|~3.0.0",
     "swisnl/laravel-fulltext": "0.13.0",
     "intervention/image": "2.*"
   },
@@ -39,13 +39,13 @@
   },
   "autoload": {
     "psr-4": {
-      "WebDevEtc\\BlogEtc\\": "src"
+      "M4tlch\\LaravelBlog\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "WebDevEtc\\BlogEtc\\BlogEtcServiceProvider"
+        "M4tlch\\LaravelBlog\\BlogEtcServiceProvider"
       ],
       "aliases": {
       }

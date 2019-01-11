@@ -1,4 +1,4 @@
-<?php namespace WebDevEtc\BlogEtc\Requests\Traits;
+<?php namespace M4tlch\LaravelBlog\Requests\Traits;
 
 
 

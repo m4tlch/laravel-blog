@@ -1,21 +1,21 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
-use WebDevEtc\BlogEtc\Events\CategoryAdded;
-use WebDevEtc\BlogEtc\Events\CategoryEdited;
-use WebDevEtc\BlogEtc\Events\CategoryWillBeDeleted;
-use WebDevEtc\BlogEtc\Helpers;
-use WebDevEtc\BlogEtc\Middleware\UserCanManageBlogPosts;
-use WebDevEtc\BlogEtc\Models\BlogEtcCategory;
-use WebDevEtc\BlogEtc\Requests\DeleteBlogEtcCategoryRequest;
-use WebDevEtc\BlogEtc\Requests\StoreBlogEtcCategoryRequest;
-use WebDevEtc\BlogEtc\Requests\UpdateBlogEtcCategoryRequest;
+use M4tlch\LaravelBlog\Events\CategoryAdded;
+use M4tlch\LaravelBlog\Events\CategoryEdited;
+use M4tlch\LaravelBlog\Events\CategoryWillBeDeleted;
+use M4tlch\LaravelBlog\Helpers;
+use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
+use M4tlch\LaravelBlog\Models\BlogEtcCategory;
+use M4tlch\LaravelBlog\Requests\DeleteBlogEtcCategoryRequest;
+use M4tlch\LaravelBlog\Requests\StoreBlogEtcCategoryRequest;
+use M4tlch\LaravelBlog\Requests\UpdateBlogEtcCategoryRequest;
 
 /**
  * Class BlogEtcCategoryAdminController
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcCategoryAdminController extends Controller
 {

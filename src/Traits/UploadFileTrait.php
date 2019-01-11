@@ -1,10 +1,10 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Traits;
+namespace M4tlch\LaravelBlog\Traits;
 
 use Illuminate\Http\UploadedFile;
-use WebDevEtc\BlogEtc\Events\UploadedImage;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Events\UploadedImage;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
 use File;
 
 trait UploadFileTrait

@@ -1,6 +1,6 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Models;
+namespace M4tlch\LaravelBlog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

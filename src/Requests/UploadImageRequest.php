@@ -1,13 +1,13 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Requests;
+namespace M4tlch\LaravelBlog\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use WebDevEtc\BlogEtc\Interfaces\BaseRequestInterface;
+use M4tlch\LaravelBlog\Interfaces\BaseRequestInterface;
 
 /**
  * Class BaseRequest
- * @package WebDevEtc\BlogEtc\Requests
+ * @package M4tlch\LaravelBlog\Requests
  */
 class UploadImageRequest extends BaseRequest
 {

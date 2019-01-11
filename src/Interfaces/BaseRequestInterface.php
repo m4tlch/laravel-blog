@@ -1,4 +1,4 @@
-<?php namespace WebDevEtc\BlogEtc\Interfaces;
+<?php namespace M4tlch\LaravelBlog\Interfaces;
 
 interface BaseRequestInterface
 {

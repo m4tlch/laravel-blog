@@ -1,12 +1,12 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Middleware;
+namespace M4tlch\LaravelBlog\Middleware;
 
 use Closure;
 
 /**
  * Class UserCanManageBlogPosts
- * @package WebDevEtc\BlogEtc\Middleware
+ * @package M4tlch\LaravelBlog\Middleware
  */
 class UserCanManageBlogPosts
 {

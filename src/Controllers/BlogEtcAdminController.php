@@ -1,26 +1,26 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use WebDevEtc\BlogEtc\Interfaces\BaseRequestInterface;
-use WebDevEtc\BlogEtc\Events\BlogPostAdded;
-use WebDevEtc\BlogEtc\Events\BlogPostEdited;
-use WebDevEtc\BlogEtc\Events\BlogPostWillBeDeleted;
-use WebDevEtc\BlogEtc\Helpers;
-use WebDevEtc\BlogEtc\Middleware\UserCanManageBlogPosts;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
-use WebDevEtc\BlogEtc\Models\BlogEtcUploadedPhoto;
-use WebDevEtc\BlogEtc\Requests\CreateBlogEtcPostRequest;
-use WebDevEtc\BlogEtc\Requests\DeleteBlogEtcPostRequest;
-use WebDevEtc\BlogEtc\Requests\UpdateBlogEtcPostRequest;
-use WebDevEtc\BlogEtc\Traits\UploadFileTrait;
+use M4tlch\LaravelBlog\Interfaces\BaseRequestInterface;
+use M4tlch\LaravelBlog\Events\BlogPostAdded;
+use M4tlch\LaravelBlog\Events\BlogPostEdited;
+use M4tlch\LaravelBlog\Events\BlogPostWillBeDeleted;
+use M4tlch\LaravelBlog\Helpers;
+use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\BlogEtcUploadedPhoto;
+use M4tlch\LaravelBlog\Requests\CreateBlogEtcPostRequest;
+use M4tlch\LaravelBlog\Requests\DeleteBlogEtcPostRequest;
+use M4tlch\LaravelBlog\Requests\UpdateBlogEtcPostRequest;
+use M4tlch\LaravelBlog\Traits\UploadFileTrait;
 
 /**
  * Class BlogEtcAdminController
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcAdminController extends Controller
 {

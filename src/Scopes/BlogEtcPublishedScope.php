@@ -1,6 +1,6 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Scopes;
+namespace M4tlch\LaravelBlog\Scopes;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Scope;

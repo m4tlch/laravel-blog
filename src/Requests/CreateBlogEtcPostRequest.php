@@ -1,11 +1,11 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Requests;
+namespace M4tlch\LaravelBlog\Requests;
 
 
 use Illuminate\Validation\Rule;
-use WebDevEtc\BlogEtc\Requests\Traits\HasCategoriesTrait;
-use WebDevEtc\BlogEtc\Requests\Traits\HasImageUploadTrait;
+use M4tlch\LaravelBlog\Requests\Traits\HasCategoriesTrait;
+use M4tlch\LaravelBlog\Requests\Traits\HasImageUploadTrait;
 
 class CreateBlogEtcPostRequest extends BaseBlogEtcPostRequest
 {

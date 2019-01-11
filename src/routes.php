@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web'], 'namespace' => '\WebDevEtc\BlogEtc\Controllers'], function () {
+Route::group(['middleware' => ['web'], 'namespace' => '\M4tlch\LaravelBlog\Controllers'], function () {
 
 
     /** The main public facing blog routes - show all posts, view a category, rss feed, view a single post, also the add comment route */

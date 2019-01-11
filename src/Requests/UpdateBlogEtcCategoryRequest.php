@@ -1,10 +1,10 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Requests;
+namespace M4tlch\LaravelBlog\Requests;
 
 
 use Illuminate\Validation\Rule;
-use WebDevEtc\BlogEtc\Models\BlogEtcCategory;
+use M4tlch\LaravelBlog\Models\BlogEtcCategory;
 
 class UpdateBlogEtcCategoryRequest extends BaseBlogEtcCategoryRequest
 {

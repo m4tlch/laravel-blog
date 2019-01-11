@@ -1,10 +1,10 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Models;
+namespace M4tlch\LaravelBlog\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use WebDevEtc\BlogEtc\Scopes\BlogCommentApprovedAndDefaultOrderScope;
+use M4tlch\LaravelBlog\Scopes\BlogCommentApprovedAndDefaultOrderScope;
 
 class BlogEtcComment extends Model
 {

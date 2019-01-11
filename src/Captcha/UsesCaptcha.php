@@ -1,11 +1,11 @@
-<?php namespace WebDevEtc\BlogEtc\Captcha;
+<?php namespace M4tlch\LaravelBlog\Captcha;
 
 /**
  * Trait UsesCaptcha
  *
  * For instantiating the config("blogetc.captcha.captcha_type") object.
  *
- * @package WebDevEtc\BlogEtc\Captcha
+ * @package M4tlch\LaravelBlog\Captcha
  */
 trait UsesCaptcha
 {

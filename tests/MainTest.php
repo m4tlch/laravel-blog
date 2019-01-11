@@ -227,7 +227,7 @@ class MainTest extends \Tests\TestCase
         $response->assertStatus(302); // redirect
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
-        $justCreatedRow = \WebDevEtc\BlogEtc\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
 
 
         $new_object_vals['title'] = "New title " . str_random();
@@ -385,8 +385,8 @@ class MainTest extends \Tests\TestCase
 
         \Config::set('blogetc.comments.auto_approve_comments', false);
         \Config::set('blogetc.captcha.captcha_enabled', true);
-        \Config::set('blogetc.captcha.captcha_type', \WebDevEtc\BlogEtc\Captcha\Basic::class);
-        $captcha = new \WebDevEtc\BlogEtc\Captcha\Basic();
+        \Config::set('blogetc.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
+        $captcha = new \M4tlch\LaravelBlog\Captcha\Basic();
         \Config::set('blogetc.captcha.basic_question', "a test question");
         \Config::set('blogetc.captcha.basic_answers', "answer1,answer2");
 
@@ -455,7 +455,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \WebDevEtc\BlogEtc\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -487,7 +487,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \WebDevEtc\BlogEtc\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -517,7 +517,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \WebDevEtc\BlogEtc\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -543,8 +543,8 @@ class MainTest extends \Tests\TestCase
 
         \Config::set('blogetc.comments.auto_approve_comments', false);
         \Config::set('blogetc.captcha.captcha_enabled', true);
-        \Config::set('blogetc.captcha.captcha_type', \WebDevEtc\BlogEtc\Captcha\Basic::class);
-        $captcha = new \WebDevEtc\BlogEtc\Captcha\Basic();
+        \Config::set('blogetc.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
+        $captcha = new \M4tlch\LaravelBlog\Captcha\Basic();
         \Config::set('blogetc.captcha.basic_question', "a test question");
         \Config::set('blogetc.captcha.basic_answers', "answer1,answer2");
 
@@ -587,7 +587,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
-        $justAddedRow = \WebDevEtc\BlogEtc\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+        $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
         $response = $this->get(route("blogetc.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
@@ -650,7 +650,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
-        $justAddedRow = \WebDevEtc\BlogEtc\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+        $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
         $response = $this->get(route("blogetc.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
@@ -708,7 +708,7 @@ class MainTest extends \Tests\TestCase
             $this->assertDatabaseHas('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
 
 
-            $justAddedRow = \WebDevEtc\BlogEtc\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+            $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
             // check the just added row exists...
             $response = $this->get(route("blogetc.admin.comments.index"));
@@ -763,7 +763,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        $justCreatedRow = \WebDevEtc\BlogEtc\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
         $id = $justCreatedRow->id;
         $delete_url = $admin_panel_url . "/delete_post/" . $id;
 
@@ -822,7 +822,7 @@ class MainTest extends \Tests\TestCase
 
 
         // get the just inserted row
-        $justCreatedRow = \WebDevEtc\BlogEtc\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
 
 
         // get the edit page (form)
@@ -874,7 +874,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_categories', $search_for_new_cat);
 
 
-        $justCreatedRow = \WebDevEtc\BlogEtc\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
         $id = $justCreatedRow->id;
 
         $delete_url = $admin_panel_url . "/categories/delete_category/$id";

@@ -1,10 +1,10 @@
-<?php namespace WebDevEtc\BlogEtc\Requests\Traits;
+<?php namespace M4tlch\LaravelBlog\Requests\Traits;
 
-use WebDevEtc\BlogEtc\Models\BlogEtcCategory;
+use M4tlch\LaravelBlog\Models\BlogEtcCategory;
 
 /**
  * Class HasCategoriesTrait
- * @package WebDevEtc\BlogEtc\Requests\Traits
+ * @package M4tlch\LaravelBlog\Requests\Traits
  */
 trait HasCategoriesTrait
 {

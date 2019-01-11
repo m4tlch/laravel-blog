@@ -100,9 +100,9 @@
 
                     {{--REPLACING THIS FILE WITH YOUR OWN LAYOUT FILE? Don't forget to include the following section!--}}
 
-                    @if(\WebDevEtc\BlogEtc\Helpers::has_flashed_message())
+                    @if(\M4tlch\LaravelBlog\Helpers::has_flashed_message())
                         <div class='alert alert-info'>
-                            <h3>{{\WebDevEtc\BlogEtc\Helpers::pull_flashed_message() }}</h3>
+                            <h3>{{\M4tlch\LaravelBlog\Helpers::pull_flashed_message() }}</h3>
                         </div>
                     @endif
 

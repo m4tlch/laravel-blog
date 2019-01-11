@@ -1,11 +1,11 @@
 <?php
-namespace WebDevEtc\BlogEtc;
+namespace M4tlch\LaravelBlog;
 
 use \Session;
 
 /**
  * Class Helpers
- * @package WebDevEtc\BlogEtc
+ * @package M4tlch\LaravelBlog
  */
 class Helpers
 {

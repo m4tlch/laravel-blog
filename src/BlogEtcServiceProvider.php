@@ -1,10 +1,10 @@
 <?php
 
-namespace WebDevEtc\BlogEtc;
+namespace M4tlch\LaravelBlog;
 
 use Illuminate\Support\ServiceProvider;
 use Swis\LaravelFulltext\ModelObserver;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
 
 class BlogEtcServiceProvider extends ServiceProvider
 {

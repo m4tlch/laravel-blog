@@ -1,15 +1,15 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Events;
+namespace M4tlch\LaravelBlog\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use WebDevEtc\BlogEtc\Models\BlogEtcComment;
+use M4tlch\LaravelBlog\Models\BlogEtcComment;
 
 /**
  * Class CommentApproved
- * @package WebDevEtc\BlogEtc\Events
+ * @package M4tlch\LaravelBlog\Events
  */
 class CommentApproved
 {

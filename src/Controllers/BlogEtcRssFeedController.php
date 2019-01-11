@@ -1,17 +1,17 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Laravelium\Feed\Feed;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
-use WebDevEtc\BlogEtc\Requests\FeedRequest;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Requests\FeedRequest;
 
 /**
  * Class BlogEtcRssFeedController.php
  * All RSS feed viewing methods
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcRssFeedController extends Controller
 {

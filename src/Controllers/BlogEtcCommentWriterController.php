@@ -1,19 +1,19 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Auth;
-use WebDevEtc\BlogEtc\Captcha\CaptchaAbstract;
-use WebDevEtc\BlogEtc\Captcha\UsesCaptcha;
-use WebDevEtc\BlogEtc\Events\CommentAdded;
-use WebDevEtc\BlogEtc\Models\BlogEtcComment;
-use WebDevEtc\BlogEtc\Models\BlogEtcPost;
-use WebDevEtc\BlogEtc\Requests\AddNewCommentRequest;
+use M4tlch\LaravelBlog\Captcha\CaptchaAbstract;
+use M4tlch\LaravelBlog\Captcha\UsesCaptcha;
+use M4tlch\LaravelBlog\Events\CommentAdded;
+use M4tlch\LaravelBlog\Models\BlogEtcComment;
+use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Requests\AddNewCommentRequest;
 
 /**
  * Class BlogEtcCommentWriterController
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcCommentWriterController extends Controller
 {

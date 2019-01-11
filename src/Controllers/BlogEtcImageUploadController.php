@@ -1,18 +1,18 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Controllers;
+namespace M4tlch\LaravelBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use WebDevEtc\BlogEtc\Middleware\UserCanManageBlogPosts;
-use WebDevEtc\BlogEtc\Models\BlogEtcUploadedPhoto;
+use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
+use M4tlch\LaravelBlog\Models\BlogEtcUploadedPhoto;
 use File;
-use WebDevEtc\BlogEtc\Requests\UploadImageRequest;
-use WebDevEtc\BlogEtc\Traits\UploadFileTrait;
+use M4tlch\LaravelBlog\Requests\UploadImageRequest;
+use M4tlch\LaravelBlog\Traits\UploadFileTrait;
 
 /**
  * Class BlogEtcAdminController
- * @package WebDevEtc\BlogEtc\Controllers
+ * @package M4tlch\LaravelBlog\Controllers
  */
 class BlogEtcImageUploadController extends Controller
 {

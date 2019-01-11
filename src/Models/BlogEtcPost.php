@@ -1,17 +1,17 @@
 <?php
 
-namespace WebDevEtc\BlogEtc\Models;
+namespace M4tlch\LaravelBlog\Models;
 
 use App\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Swis\LaravelFulltext\Indexable;
-use WebDevEtc\BlogEtc\Interfaces\SearchResultInterface;
-use WebDevEtc\BlogEtc\Scopes\BlogEtcPublishedScope;
+use M4tlch\LaravelBlog\Interfaces\SearchResultInterface;
+use M4tlch\LaravelBlog\Scopes\BlogEtcPublishedScope;
 
 /**
  * Class BlogEtcPost
- * @package WebDevEtc\BlogEtc\Models
+ * @package M4tlch\LaravelBlog\Models
  */
 class BlogEtcPost extends Model implements SearchResultInterface
 {
