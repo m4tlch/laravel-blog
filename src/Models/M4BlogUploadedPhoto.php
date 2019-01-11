@@ -4,7 +4,7 @@ namespace M4tlch\LaravelBlog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogEtcUploadedPhoto extends Model
+class M4BlogUploadedPhoto extends Model
 {
     public $table = 'blog_etc_uploaded_photos';
     public $casts = [

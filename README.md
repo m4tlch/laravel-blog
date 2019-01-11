@@ -1,10 +1,10 @@
-# WebDevEtc BlogEtc
+# WebDevEtc M4Blog
 ## Easy to install Laravel Package for adding a full blog (with admin backend) to your Laravel app
 ### 5 minutes to install! Quick and easy!
 
 ## Introduction
 
-This is [WebDevEtc's](https://nikacrm.com/) BlogEtc package. It has everything you need to quickly and easily add a blog to your laravel app.
+This is [WebDevEtc's](https://nikacrm.com/) M4Blog package. It has everything you need to quickly and easily add a blog to your laravel app.
 
 
 ## FOR 5 MINUTE INSTALLATION GUIDE (with video guide), PLEASE VISIT [THE INSTALL GUIDE HERE](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide)
@@ -53,7 +53,7 @@ This is [WebDevEtc's](https://nikacrm.com/) BlogEtc package. It has everything y
    - install with composer,
    - do the database migration, copy the config file over (done with `php artisan vendor:publish`)
    - chmod/chown the `public/blog_images/` directory so featured images can be uploaded for each blog post
-   - and then add 1 method to your `\App\User` file (`canManageBlogEtcPosts()`
+   - and then add 1 method to your `\App\User` file (`canManageM4BlogPosts()`
    - __but please see the install instructions to get everything up and working__
 
 
@@ -66,24 +66,24 @@ This is [WebDevEtc's](https://nikacrm.com/) BlogEtc package. It has everything y
 
 ## What this package is NOT for:
 
- - Sites where you want your (normal, non-admin) users to write blog posts. You must set `canManageBlogEtcPosts()` on your user model to ONLY allow trusted users.
+ - Sites where you want your (normal, non-admin) users to write blog posts. You must set `canManageM4BlogPosts()` on your user model to ONLY allow trusted users.
 
 ## Important notes
 
-1) Anyone who can manage blog posts (defined by the `canManageBlogEtcPosts()` method you add to your User model) can submit any HTML which is echoed out. This is a security issue. If you don't trust the content you should add a custom view and escape the blog content before echoing it, and set `use_custom_view_files` in the config to false.
+1) Anyone who can manage blog posts (defined by the `canManageM4BlogPosts()` method you add to your User model) can submit any HTML which is echoed out. This is a security issue. If you don't trust the content you should add a custom view and escape the blog content before echoing it, and set `use_custom_view_files` in the config to false.
 
 2) if `use_custom_view_files` is enabled in the config (which it is by default), it means that any post with a custom view file set (details in the docs) can include any file within `/resources/views/custom_blog_posts`, which blade will execute. This package gives no method to edit any file within that directory though.
 
 
 
-## How to install BlogEtc to your laravel app
+## How to install M4Blog to your laravel app
 
-Please see our [BlogEtc Laravel Blog Package Documentation/install guide](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) for install instructions. (It is very simple - done via composer/artisan commands, plus adding one method to your \App\User model (`canManageBlogEtcPosts()` which should return `true` if this user can manage the blog).
+Please see our [M4Blog Laravel Blog Package Documentation/install guide](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) for install instructions. (It is very simple - done via composer/artisan commands, plus adding one method to your \App\User model (`canManageM4BlogPosts()` which should return `true` if this user can manage the blog).
 
 
 ## How to customise the blog views/templates
 
-This is easy to do, and further detail can be found in our  [BlogEtc Laravel Blog Package Documentation](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views).
+This is easy to do, and further detail can be found in our  [M4Blog Laravel Blog Package Documentation](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views).
 
 After doing the correct `vendor:publish`, all of the default template files will be found in /resources/views/vendor/blogetc/ and are easy to edit to match your needs.
 
@@ -93,7 +93,7 @@ It will auto set all required routes (both public facing, and admin backend). Th
 
 ## Config options
 
-Please see the [BlogEtc config option documentation here](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#config_options) for details.
+Please see the [M4Blog config option documentation here](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#config_options) for details.
 
 All config options have comments which describe what they do. Please just refer to the `blogetc.php` file in your /config/ dir.
 
@@ -154,7 +154,7 @@ Try adding this to config/app.php:
 - 3.0.2                 - fixed default medium image size (changed to 600x400)
 - 3.0.1                 - replaced all short tags (<?) with full opening ones (<?php)
 - 3.0                   - Added separate functionality for uploading images (and save some meta data in db)
-- 2.1                   - added 'short_description' to db + form, and BlogEtcPost::generate_introduction() method will try and use this to generate intro text.
+- 2.1                   - added 'short_description' to db + form, and M4BlogPost::generate_introduction() method will try and use this to generate intro text.
 - 2.0                   - added full text search (enable it via the config file - it is disabled by default).
 - 1.2                   - added WYSIWYG, few smaller changes
 - 1.1.1                 - added basic captcha

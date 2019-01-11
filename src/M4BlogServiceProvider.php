@@ -4,9 +4,9 @@ namespace M4tlch\LaravelBlog;
 
 use Illuminate\Support\ServiceProvider;
 use Swis\LaravelFulltext\ModelObserver;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
 
-class BlogEtcServiceProvider extends ServiceProvider
+class M4BlogServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -18,7 +18,7 @@ class BlogEtcServiceProvider extends ServiceProvider
 
         if (config("blogetc.search.search_enabled") == false) {
             // if search is disabled, don't allow it to sync.
-            ModelObserver::disableSyncingFor(BlogEtcPost::class);
+            ModelObserver::disableSyncingFor(M4BlogPost::class);
         }
 
         if (config("blogetc.include_default_routes", true)) {

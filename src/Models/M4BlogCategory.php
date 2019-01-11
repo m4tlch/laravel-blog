@@ -4,7 +4,7 @@ namespace M4tlch\LaravelBlog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogEtcCategory extends Model
+class M4BlogCategory extends Model
 {
     public $fillable = [
         'category_name',
@@ -17,7 +17,7 @@ class BlogEtcCategory extends Model
      */
     public function posts()
     {
-        return $this->belongsToMany(BlogEtcPost::class, 'blog_etc_post_categories');
+        return $this->belongsToMany(M4BlogPost::class, 'blog_etc_post_categories');
     }
 
     /**

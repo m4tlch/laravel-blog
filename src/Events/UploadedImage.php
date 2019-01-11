@@ -5,7 +5,7 @@ namespace M4tlch\LaravelBlog\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
 
 /**
  * Class UploadedImage
@@ -15,7 +15,7 @@ class UploadedImage
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var  BlogEtcPost|null */
+    /** @var  M4BlogPost|null */
     public $blogEtcPost;
     /**
      * @var
@@ -29,11 +29,11 @@ class UploadedImage
      * UploadedImage constructor.
      *
      * @param $image_filename - the new filename
-     * @param BlogEtcPost $blogEtcPost
+     * @param M4BlogPost $blogEtcPost
      * @param $image
      * @param $source string|null  the __METHOD__  firing this event (or other string)
      */
-    public function __construct(string $image_filename, $image,BlogEtcPost $blogEtcPost=null,string $source='other')
+    public function __construct(string $image_filename, $image,M4BlogPost $blogEtcPost=null,string $source='other')
     {
         $this->image_filename = $image_filename;
         $this->blogEtcPost=$blogEtcPost;

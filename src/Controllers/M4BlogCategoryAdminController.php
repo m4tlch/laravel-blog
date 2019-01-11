@@ -8,19 +8,19 @@ use M4tlch\LaravelBlog\Events\CategoryEdited;
 use M4tlch\LaravelBlog\Events\CategoryWillBeDeleted;
 use M4tlch\LaravelBlog\Helpers;
 use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
-use M4tlch\LaravelBlog\Models\BlogEtcCategory;
-use M4tlch\LaravelBlog\Requests\DeleteBlogEtcCategoryRequest;
-use M4tlch\LaravelBlog\Requests\StoreBlogEtcCategoryRequest;
-use M4tlch\LaravelBlog\Requests\UpdateBlogEtcCategoryRequest;
+use M4tlch\LaravelBlog\Models\M4BlogCategory;
+use M4tlch\LaravelBlog\Requests\DeleteM4BlogCategoryRequest;
+use M4tlch\LaravelBlog\Requests\StoreM4BlogCategoryRequest;
+use M4tlch\LaravelBlog\Requests\UpdateM4BlogCategoryRequest;
 
 /**
- * Class BlogEtcCategoryAdminController
+ * Class M4BlogCategoryAdminController
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcCategoryAdminController extends Controller
+class M4BlogCategoryAdminController extends Controller
 {
     /**
-     * BlogEtcCategoryAdminController constructor.
+     * M4BlogCategoryAdminController constructor.
      */
     public function __construct()
     {
@@ -34,7 +34,7 @@ class BlogEtcCategoryAdminController extends Controller
      */
     public function index(){
 
-        $categories = BlogEtcCategory::orderBy("category_name")->paginate(25);
+        $categories = M4BlogCategory::orderBy("category_name")->paginate(25);
         return view("blogetc_admin::categories.index")->withCategories($categories);
     }
 
@@ -51,11 +51,11 @@ class BlogEtcCategoryAdminController extends Controller
     /**
      * Store a new category
      *
-     * @param StoreBlogEtcCategoryRequest $request
+     * @param StoreM4BlogCategoryRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store_category(StoreBlogEtcCategoryRequest $request){
-        $new_category = new BlogEtcCategory($request->all());
+    public function store_category(StoreM4BlogCategoryRequest $request){
+        $new_category = new M4BlogCategory($request->all());
         $new_category->save();
 
         Helpers::flash_message("Saved new category");
@@ -70,20 +70,20 @@ class BlogEtcCategoryAdminController extends Controller
      * @return mixed
      */
     public function edit_category($categoryId){
-        $category = BlogEtcCategory::findOrFail($categoryId);
+        $category = M4BlogCategory::findOrFail($categoryId);
         return view("blogetc_admin::categories.edit_category")->withCategory($category);
     }
 
     /**
      * Save submitted changes
      *
-     * @param UpdateBlogEtcCategoryRequest $request
+     * @param UpdateM4BlogCategoryRequest $request
      * @param $categoryId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update_category(UpdateBlogEtcCategoryRequest $request, $categoryId){
-        /** @var BlogEtcCategory $category */
-        $category = BlogEtcCategory::findOrFail($categoryId);
+    public function update_category(UpdateM4BlogCategoryRequest $request, $categoryId){
+        /** @var M4BlogCategory $category */
+        $category = M4BlogCategory::findOrFail($categoryId);
         $category->fill($request->all());
         $category->save();
 
@@ -95,16 +95,16 @@ class BlogEtcCategoryAdminController extends Controller
     /**
      * Delete the category
      *
-     * @param DeleteBlogEtcCategoryRequest $request
+     * @param DeleteM4BlogCategoryRequest $request
      * @param $categoryId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function destroy_category(DeleteBlogEtcCategoryRequest $request, $categoryId){
+    public function destroy_category(DeleteM4BlogCategoryRequest $request, $categoryId){
 
         /* Please keep this in, so code inspections don't say $request was unused. Of course it might now get marked as left/right parts are equal */
         $request=$request;
 
-        $category = BlogEtcCategory::findOrFail($categoryId);
+        $category = M4BlogCategory::findOrFail($categoryId);
         event(new CategoryWillBeDeleted($category));
         $category->delete();
 

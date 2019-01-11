@@ -7,15 +7,15 @@ use Auth;
 use M4tlch\LaravelBlog\Captcha\CaptchaAbstract;
 use M4tlch\LaravelBlog\Captcha\UsesCaptcha;
 use M4tlch\LaravelBlog\Events\CommentAdded;
-use M4tlch\LaravelBlog\Models\BlogEtcComment;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\M4BlogComment;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
 use M4tlch\LaravelBlog\Requests\AddNewCommentRequest;
 
 /**
- * Class BlogEtcCommentWriterController
+ * Class M4BlogCommentWriterController
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcCommentWriterController extends Controller
+class M4BlogCommentWriterController extends Controller
 {
 
     use UsesCaptcha;
@@ -35,7 +35,7 @@ class BlogEtcCommentWriterController extends Controller
             throw new \RuntimeException("Built in comments are disabled");
         }
 
-        $blog_post = BlogEtcPost::where("slug", $blog_post_slug)
+        $blog_post = M4BlogPost::where("slug", $blog_post_slug)
             ->firstOrFail();
 
         /** @var CaptchaAbstract $captcha */
@@ -57,11 +57,11 @@ class BlogEtcCommentWriterController extends Controller
     /**
      * @param AddNewCommentRequest $request
      * @param $blog_post
-     * @return BlogEtcComment
+     * @return M4BlogComment
      */
     protected function createNewComment(AddNewCommentRequest $request, $blog_post)
     {
-        $new_comment = new BlogEtcComment($request->all());
+        $new_comment = new M4BlogComment($request->all());
 
         if (config("blogetc.comments.save_ip_address")) {
             $new_comment->ip = $request->ip();

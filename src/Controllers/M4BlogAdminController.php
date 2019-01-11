@@ -11,30 +11,30 @@ use M4tlch\LaravelBlog\Events\BlogPostEdited;
 use M4tlch\LaravelBlog\Events\BlogPostWillBeDeleted;
 use M4tlch\LaravelBlog\Helpers;
 use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
-use M4tlch\LaravelBlog\Models\BlogEtcUploadedPhoto;
-use M4tlch\LaravelBlog\Requests\CreateBlogEtcPostRequest;
-use M4tlch\LaravelBlog\Requests\DeleteBlogEtcPostRequest;
-use M4tlch\LaravelBlog\Requests\UpdateBlogEtcPostRequest;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
+use M4tlch\LaravelBlog\Models\M4BlogUploadedPhoto;
+use M4tlch\LaravelBlog\Requests\CreateM4BlogPostRequest;
+use M4tlch\LaravelBlog\Requests\DeleteM4BlogPostRequest;
+use M4tlch\LaravelBlog\Requests\UpdateM4BlogPostRequest;
 use M4tlch\LaravelBlog\Traits\UploadFileTrait;
 
 /**
- * Class BlogEtcAdminController
+ * Class M4BlogAdminController
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcAdminController extends Controller
+class M4BlogAdminController extends Controller
 {
     use UploadFileTrait;
 
     /**
-     * BlogEtcAdminController constructor.
+     * M4BlogAdminController constructor.
      */
     public function __construct()
     {
         $this->middleware(UserCanManageBlogPosts::class);
 
         if (!is_array(config("blogetc"))) {
-            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the BlogEtc package by running the php artisan publish:vendor command');
+            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
         }
     }
 
@@ -46,7 +46,7 @@ class BlogEtcAdminController extends Controller
      */
     public function index()
     {
-        $posts = BlogEtcPost::orderBy("posted_at", "desc")
+        $posts = M4BlogPost::orderBy("posted_at", "desc")
             ->paginate(10);
 
         return view("blogetc_admin::index", ['posts'=>$posts]);
@@ -64,13 +64,13 @@ class BlogEtcAdminController extends Controller
     /**
      * Save a new post
      *
-     * @param CreateBlogEtcPostRequest $request
+     * @param CreateM4BlogPostRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function store_post(CreateBlogEtcPostRequest $request)
+    public function store_post(CreateM4BlogPostRequest $request)
     {
-        $new_blog_post = new BlogEtcPost($request->all());
+        $new_blog_post = new M4BlogPost($request->all());
 
         $this->processUploadedImages($request, $new_blog_post);
 
@@ -96,22 +96,22 @@ class BlogEtcAdminController extends Controller
      */
     public function edit_post( $blogPostId)
     {
-        $post = BlogEtcPost::findOrFail($blogPostId);
+        $post = M4BlogPost::findOrFail($blogPostId);
         return view("blogetc_admin::posts.edit_post")->withPost($post);
     }
 
     /**
      * Save changes to a post
      *
-     * @param UpdateBlogEtcPostRequest $request
+     * @param UpdateM4BlogPostRequest $request
      * @param $blogPostId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function update_post(UpdateBlogEtcPostRequest $request, $blogPostId)
+    public function update_post(UpdateM4BlogPostRequest $request, $blogPostId)
     {
-        /** @var BlogEtcPost $post */
-        $post = BlogEtcPost::findOrFail($blogPostId);
+        /** @var M4BlogPost $post */
+        $post = M4BlogPost::findOrFail($blogPostId);
         $post->fill($request->all());
 
         $this->processUploadedImages($request, $post);
@@ -129,14 +129,14 @@ class BlogEtcAdminController extends Controller
     /**
      * Delete a post
      *
-     * @param DeleteBlogEtcPostRequest $request
+     * @param DeleteM4BlogPostRequest $request
      * @param $blogPostId
      * @return mixed
      */
-    public function destroy_post(DeleteBlogEtcPostRequest $request, $blogPostId)
+    public function destroy_post(DeleteM4BlogPostRequest $request, $blogPostId)
     {
 
-        $post = BlogEtcPost::findOrFail($blogPostId);
+        $post = M4BlogPost::findOrFail($blogPostId);
         event(new BlogPostWillBeDeleted($post));
 
         $post->delete();
@@ -157,7 +157,7 @@ class BlogEtcAdminController extends Controller
      * @throws \Exception
      * @todo - next full release, tidy this up!
      */
-    protected function processUploadedImages(BaseRequestInterface $request, BlogEtcPost $new_blog_post)
+    protected function processUploadedImages(BaseRequestInterface $request, M4BlogPost $new_blog_post)
     {
         if (!config("blogetc.image_upload_enabled")) {
             // image upload was disabled
@@ -187,7 +187,7 @@ class BlogEtcAdminController extends Controller
         // store the image upload.
         // todo: link this to the blogetc_post row.
         if (count(array_filter($uploaded_image_details))>0) {
-            BlogEtcUploadedPhoto::create([
+            M4BlogUploadedPhoto::create([
                 'source' => "BlogFeaturedImage",
                 'uploaded_images' => $uploaded_image_details,
             ]);

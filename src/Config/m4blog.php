@@ -4,7 +4,7 @@
 
 return [
 
-    'include_default_routes' => true, // set to false to not include routes.php for BlogEtcReaderController and admin related routes. Default: true. If you disable this, you will have to manually copy over the data from routes.php and add it to your web.php.
+    'include_default_routes' => true, // set to false to not include routes.php for M4BlogReaderController and admin related routes. Default: true. If you disable this, you will have to manually copy over the data from routes.php and add it to your web.php.
 
     'blog_prefix' => "blog", // used in routes.php. If you want to your http://yoursite.com/latest-news (or anything else), then enter that here. Default: blog
     'admin_prefix' => "blog_admin", // similar to above, but used for the admin panel for the blog. Default: blog_admin

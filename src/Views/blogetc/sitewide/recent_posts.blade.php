@@ -1,6 +1,6 @@
 <h5>Recent Posts</h5>
 <ul class="nav">
-    @foreach(\M4tlch\LaravelBlog\Models\BlogEtcPost::orderBy("posted_at","desc")->limit(5)->get() as $post)
+    @foreach(\M4tlch\LaravelBlog\Models\M4BlogPost::orderBy("posted_at","desc")->limit(5)->get() as $post)
         <li class="nav-item">
             <a class='nav-link' href='{{$post->url()}}'>{{$post->title}}</a>
         </li>

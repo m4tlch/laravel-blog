@@ -4,7 +4,7 @@ namespace M4tlch\LaravelBlog\Requests;
 
 use Illuminate\Validation\Rule;
 
-class StoreBlogEtcCategoryRequest extends BaseBlogEtcCategoryRequest
+class StoreM4BlogCategoryRequest extends BaseM4BlogCategoryRequest
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace M4tlch\LaravelBlog\Requests;
 
-abstract class BaseBlogEtcCategoryRequest extends BaseRequest
+abstract class BaseM4BlogCategoryRequest extends BaseRequest
 {
     /**
      * Shared rules for categories

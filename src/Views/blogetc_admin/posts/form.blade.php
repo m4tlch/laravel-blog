@@ -182,7 +182,7 @@
     <h4>Categories:</h4>
     <div class='row'>
 
-        @forelse(\M4tlch\LaravelBlog\Models\BlogEtcCategory::orderBy("category_name","asc")->limit(1000)->get() as $category)
+        @forelse(\M4tlch\LaravelBlog\Models\M4BlogCategory::orderBy("category_name","asc")->limit(1000)->get() as $category)
             <div class="form-check col-sm-6">
                 <input class="" type="checkbox" value="1"
                        @if(old("category.".$category->id, $post->categories->contains($category->id))) checked='checked'

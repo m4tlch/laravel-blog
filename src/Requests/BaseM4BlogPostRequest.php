@@ -4,7 +4,7 @@ namespace M4tlch\LaravelBlog\Requests;
 
 use Carbon\Carbon;
 
-abstract class BaseBlogEtcPostRequest extends BaseRequest
+abstract class BaseM4BlogPostRequest extends BaseRequest
 {
 
     /**

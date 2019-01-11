@@ -1,4 +1,4 @@
-@if(\Auth::check() && \Auth::user()->canManageBlogEtcPosts())
+@if(\Auth::check() && \Auth::user()->canManageM4BlogPosts())
     <a href="{{$post->edit_url()}}" class="btn btn-outline-secondary btn-sm pull-right float-right">Edit
         Post</a>
 @endif

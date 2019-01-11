@@ -5,7 +5,7 @@
 
     <div class='row'>
         <div class='col-sm-12 blogetc_container'>
-            @if(\Auth::check() && \Auth::user()->canManageBlogEtcPosts())
+            @if(\Auth::check() && \Auth::user()->canManageM4BlogPosts())
                 <div class="text-center">
                         <p class='mb-1'>You are logged in as a blog admin user.
                             <br>

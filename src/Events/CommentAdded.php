@@ -5,8 +5,8 @@ namespace M4tlch\LaravelBlog\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use M4tlch\LaravelBlog\Models\BlogEtcComment;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\M4BlogComment;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
 
 /**
  * Class CommentAdded
@@ -16,17 +16,17 @@ class CommentAdded
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var  BlogEtcPost */
+    /** @var  M4BlogPost */
     public $blogEtcPost;
-    /** @var  BlogEtcComment */
+    /** @var  M4BlogComment */
     public $newComment;
 
     /**
      * CommentAdded constructor.
-     * @param BlogEtcPost $blogEtcPost
-     * @param BlogEtcComment $newComment
+     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogComment $newComment
      */
-    public function __construct(BlogEtcPost $blogEtcPost, BlogEtcComment $newComment)
+    public function __construct(M4BlogPost $blogEtcPost, M4BlogComment $newComment)
     {
         $this->blogEtcPost=$blogEtcPost;
         $this->newComment=$newComment;

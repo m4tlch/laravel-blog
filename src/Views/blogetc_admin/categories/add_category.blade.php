@@ -7,7 +7,7 @@
     <form method='post' action='{{route("blogetc.admin.categories.create_category")}}'  enctype="multipart/form-data" >
 
         @csrf
-        @include("blogetc_admin::categories.form", ['category' => new \M4tlch\LaravelBlog\Models\BlogEtcCategory()])
+        @include("blogetc_admin::categories.form", ['category' => new \M4tlch\LaravelBlog\Models\M4BlogCategory()])
 
         <input type='submit' class='btn btn-primary' value='Add new category' >
 

@@ -4,12 +4,11 @@ namespace M4tlch\LaravelBlog\Requests;
 
 
 use Illuminate\Validation\Rule;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
 use M4tlch\LaravelBlog\Requests\Traits\HasCategoriesTrait;
 use M4tlch\LaravelBlog\Requests\Traits\HasImageUploadTrait;
 
-class UpdateBlogEtcPostRequest  extends BaseBlogEtcPostRequest {
-
+class CreateM4BlogPostRequest extends BaseM4BlogPostRequest
+{
     use HasCategoriesTrait;
     use HasImageUploadTrait;
 
@@ -21,7 +20,8 @@ class UpdateBlogEtcPostRequest  extends BaseBlogEtcPostRequest {
     public function rules()
     {
         $return = $this->baseBlogPostRules();
-        $return['slug'] [] = Rule::unique("blog_etc_posts", "slug")->ignore($this->route()->parameter("blogPostId"));
+        $return['slug'] [] = Rule::unique("blog_etc_posts", "slug");
         return $return;
     }
+
 }

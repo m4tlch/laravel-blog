@@ -7,13 +7,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Swis\LaravelFulltext\Indexable;
 use M4tlch\LaravelBlog\Interfaces\SearchResultInterface;
-use M4tlch\LaravelBlog\Scopes\BlogEtcPublishedScope;
+use M4tlch\LaravelBlog\Scopes\M4BlogPublishedScope;
 
 /**
- * Class BlogEtcPost
+ * Class M4BlogPost
  * @package M4tlch\LaravelBlog\Models
  */
-class BlogEtcPost extends Model implements SearchResultInterface
+class M4BlogPost extends Model implements SearchResultInterface
 {
 
     use Sluggable;
@@ -87,10 +87,10 @@ class BlogEtcPost extends Model implements SearchResultInterface
     {
         parent::boot();
 
-        /* If user is logged in and \Auth::user()->canManageBlogEtcPosts() == true, show any/all posts.
+        /* If user is logged in and \Auth::user()->canManageM4BlogPosts() == true, show any/all posts.
            otherwise (which will be for most users) it should only show published posts that have a posted_at
            time <= Carbon::now(). This sets it up: */
-        static::addGlobalScope(new BlogEtcPublishedScope());
+        static::addGlobalScope(new M4BlogPublishedScope());
     }
 
     /**
@@ -122,7 +122,7 @@ class BlogEtcPost extends Model implements SearchResultInterface
      */
     public function categories()
     {
-        return $this->belongsToMany(BlogEtcCategory::class, 'blog_etc_post_categories');
+        return $this->belongsToMany(M4BlogCategory::class, 'blog_etc_post_categories');
     }
 
     /**
@@ -132,7 +132,7 @@ class BlogEtcPost extends Model implements SearchResultInterface
      */
     public function comments()
     {
-        return $this->hasMany(BlogEtcComment::class);
+        return $this->hasMany(M4BlogComment::class);
     }
 
     /**
@@ -287,11 +287,11 @@ class BlogEtcPost extends Model implements SearchResultInterface
                 in the database table:    : blogetc_posts.image_medium
                 when calling image_url()  : image_url("medium")
             */
-            throw new \InvalidArgumentException("Invalid image size ($size). BlogEtcPost image size should not begin with 'image_'. Remove this from the start of $size. It *should* be in the blogetc.image_sizes config though!");
+            throw new \InvalidArgumentException("Invalid image size ($size). M4BlogPost image size should not begin with 'image_'. Remove this from the start of $size. It *should* be in the blogetc.image_sizes config though!");
         }
 
 
-        throw new \InvalidArgumentException("BlogEtcPost image size should be 'large','medium','thumbnail' or another field as defined in config/blogetc.php. Provided size ($size) is not valid");
+        throw new \InvalidArgumentException("M4BlogPost image size should be 'large','medium','thumbnail' or another field as defined in config/blogetc.php. Provided size ($size) is not valid");
     }
 
 

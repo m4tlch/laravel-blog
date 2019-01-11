@@ -5,7 +5,7 @@ namespace M4tlch\LaravelBlog\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use M4tlch\LaravelBlog\Models\BlogEtcComment;
+use M4tlch\LaravelBlog\Models\M4BlogComment;
 
 /**
  * Class CommentApproved
@@ -15,14 +15,14 @@ class CommentApproved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /** @var  BlogEtcComment */
+    /** @var  M4BlogComment */
     public $comment;
 
     /**
      * CommentApproved constructor.
-     * @param BlogEtcComment $comment
+     * @param M4BlogComment $comment
      */
-    public function __construct(BlogEtcComment $comment)
+    public function __construct(M4BlogComment $comment)
     {
         $this->comment=$comment;
         // you can get the blog post via $comment->post

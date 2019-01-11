@@ -94,13 +94,13 @@ class MainTest extends \Tests\TestCase
     }
 
 
-    public function testUserHasNanManageBlogEtcPostsMethod()
+    public function testUserHasNanManageM4BlogPostsMethod()
     {
 
-        $this->assertTrue(method_exists(\App\User::class, "canManageBlogEtcPosts"), "Your User model must have the canManageBlogEtcPosts method");
+        $this->assertTrue(method_exists(\App\User::class, "canManageM4BlogPosts"), "Your User model must have the canManageM4BlogPosts method");
 
         $user = new \App\User();
-        $this->assertTrue(is_bool($user->canManageBlogEtcPosts()));
+        $this->assertTrue(is_bool($user->canManageM4BlogPosts()));
 
     }
 
@@ -126,7 +126,7 @@ class MainTest extends \Tests\TestCase
         $response->assertStatus(200);
 
         // check user can see admin area:
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $response = $this->get($admin_panel_url);
         // check if we can see the admin panel correctly
@@ -141,7 +141,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
 //        $user=$this->create_admin_user();
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
@@ -176,7 +176,7 @@ class MainTest extends \Tests\TestCase
 
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
@@ -208,7 +208,7 @@ class MainTest extends \Tests\TestCase
 
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
@@ -227,7 +227,7 @@ class MainTest extends \Tests\TestCase
         $response->assertStatus(302); // redirect
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
-        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\M4BlogPost::where("slug", $new_object_vals['slug'])->firstOrFail();
 
 
         $new_object_vals['title'] = "New title " . str_random();
@@ -248,7 +248,7 @@ class MainTest extends \Tests\TestCase
 
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
@@ -455,7 +455,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -487,7 +487,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -517,7 +517,7 @@ class MainTest extends \Tests\TestCase
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
-        $newblogpost = new \M4tlch\LaravelBlog\Models\BlogEtcPost;
+        $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
 
         $newblogpost->title=__METHOD__ . " " . time();
 
@@ -587,7 +587,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
-        $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+        $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
         $response = $this->get(route("blogetc.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
@@ -650,7 +650,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
-        $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+        $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
         $response = $this->get(route("blogetc.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
@@ -708,7 +708,7 @@ class MainTest extends \Tests\TestCase
             $this->assertDatabaseHas('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
 
 
-            $justAddedRow = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
+            $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
             // check the just added row exists...
             $response = $this->get(route("blogetc.admin.comments.index"));
@@ -741,7 +741,7 @@ class MainTest extends \Tests\TestCase
 
         $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
@@ -763,7 +763,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcPost::where("slug", $new_object_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\M4BlogPost::where("slug", $new_object_vals['slug'])->firstOrFail();
         $id = $justCreatedRow->id;
         $delete_url = $admin_panel_url . "/delete_post/" . $id;
 
@@ -822,7 +822,7 @@ class MainTest extends \Tests\TestCase
 
 
         // get the just inserted row
-        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\M4BlogCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
 
 
         // get the edit page (form)
@@ -874,7 +874,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_categories', $search_for_new_cat);
 
 
-        $justCreatedRow = \M4tlch\LaravelBlog\Models\BlogEtcCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
+        $justCreatedRow = \M4tlch\LaravelBlog\Models\M4BlogCategory::where("slug", $new_cat_vals['slug'])->firstOrFail();
         $id = $justCreatedRow->id;
 
         $delete_url = $admin_panel_url . "/categories/delete_category/$id";
@@ -914,7 +914,7 @@ class MainTest extends \Tests\TestCase
         $user = $this->getMockBuilder(\App\User::class)
             ->getMock();
         // make sure the user can see admin panel
-        $user->method("canManageBlogEtcPosts")
+        $user->method("canManageM4BlogPosts")
             ->will($this->returnCallback(function () {
                 return true;
             }));
@@ -942,7 +942,7 @@ class MainTest extends \Tests\TestCase
     {
         $user = $this->create_admin_user();
 
-        $this->assertTrue($user->canManageBlogEtcPosts());
+        $this->assertTrue($user->canManageM4BlogPosts());
 
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
@@ -963,22 +963,22 @@ class MainTest extends \Tests\TestCase
         return array($new_object_vals, $search_for_obj);
     }
 
-    public function testUserModelHasCanManageBlogEtcPostsMethod()
+    public function testUserModelHasCanManageM4BlogPostsMethod()
     {
         $u = new \App\User();
-        $this->assertTrue(method_exists($u,"canManageBlogEtcPosts"),"canManageBlogEtcPosts() must be added to User model. Please see WebDevEtc BlogEtc docs for details. It should return true ONLY for the admin users");
+        $this->assertTrue(method_exists($u,"canManageM4BlogPosts"),"canManageM4BlogPosts() must be added to User model. Please see WebDevEtc M4Blog docs for details. It should return true ONLY for the admin users");
     }
-    public function testUserModelCanManageBlogEtcPostsMethodDoesntAlwaysReturnTrue()
+    public function testUserModelCanManageM4BlogPostsMethodDoesntAlwaysReturnTrue()
     {
         $u = new \App\User();
 
-        $u->id = 9999999; // in case the logic on canManageBlogEtcPosts() checks for a low ID
+        $u->id = 9999999; // in case the logic on canManageM4BlogPosts() checks for a low ID
         $u->email = str_random(); // in case the logic looks for a certain email or something.
 
-        $this->assertTrue(method_exists($u,"canManageBlogEtcPosts"));
+        $this->assertTrue(method_exists($u,"canManageM4BlogPosts"));
 
         // because this user is just a randomly made one, it probably should not be allowed to edit blog posts.
-        $this->assertFalse($u->canManageBlogEtcPosts(), "User::canManageBlogEtcPosts() returns true, but it PROBABLY should return false! Otherwise every single user on your site has access to the blog admin panel! This might not be an error though, if your system doesn't allow public registration. But you should look into this. I know this isn't a good way to handle this test, but it seems to make sense.");
+        $this->assertFalse($u->canManageM4BlogPosts(), "User::canManageM4BlogPosts() returns true, but it PROBABLY should return false! Otherwise every single user on your site has access to the blog admin panel! This might not be an error though, if your system doesn't allow public registration. But you should look into this. I know this isn't a good way to handle this test, but it seems to make sense.");
     }
 
 

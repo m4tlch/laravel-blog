@@ -8,16 +8,16 @@ use M4tlch\LaravelBlog\Events\CommentApproved;
 use M4tlch\LaravelBlog\Events\CommentWillBeDeleted;
 use M4tlch\LaravelBlog\Helpers;
 use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
-use M4tlch\LaravelBlog\Models\BlogEtcComment;
+use M4tlch\LaravelBlog\Models\M4BlogComment;
 
 /**
- * Class BlogEtcCommentsAdminController
+ * Class M4BlogCommentsAdminController
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcCommentsAdminController extends Controller
+class M4BlogCommentsAdminController extends Controller
 {
     /**
-     * BlogEtcCommentsAdminController constructor.
+     * M4BlogCommentsAdminController constructor.
      */
     public function __construct()
     {
@@ -32,7 +32,7 @@ class BlogEtcCommentsAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $comments = BlogEtcComment::withoutGlobalScopes()->orderBy("created_at", "desc")
+        $comments = M4BlogComment::withoutGlobalScopes()->orderBy("created_at", "desc")
             ->with("post");
 
         if ($request->get("waiting_for_approval")) {
@@ -54,7 +54,7 @@ class BlogEtcCommentsAdminController extends Controller
      */
     public function approve($blogCommentId)
     {
-        $comment = BlogEtcComment::withoutGlobalScopes()->findOrFail($blogCommentId);
+        $comment = M4BlogComment::withoutGlobalScopes()->findOrFail($blogCommentId);
         $comment->approved = true;
         $comment->save();
 
@@ -73,7 +73,7 @@ class BlogEtcCommentsAdminController extends Controller
      */
     public function destroy($blogCommentId)
     {
-        $comment = BlogEtcComment::withoutGlobalScopes()->findOrFail($blogCommentId);
+        $comment = M4BlogComment::withoutGlobalScopes()->findOrFail($blogCommentId);
         event(new CommentWillBeDeleted($comment));
 
         $comment->delete();

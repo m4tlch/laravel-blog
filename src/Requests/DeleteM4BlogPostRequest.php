@@ -3,7 +3,7 @@
 namespace M4tlch\LaravelBlog\Requests;
 
 
-class DeleteBlogEtcCategoryRequest  extends BaseRequest {
+class DeleteM4BlogPostRequest  extends BaseRequest {
 
 
     /**
@@ -13,6 +13,8 @@ class DeleteBlogEtcCategoryRequest  extends BaseRequest {
      */
     public function rules()
     {
-        return [];
+        return [
+            //
+        ];
     }
 }

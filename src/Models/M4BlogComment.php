@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use M4tlch\LaravelBlog\Scopes\BlogCommentApprovedAndDefaultOrderScope;
 
-class BlogEtcComment extends Model
+class M4BlogComment extends Model
 {
     public $casts = [
         'approved' => 'boolean',
@@ -28,7 +28,7 @@ class BlogEtcComment extends Model
     {
         parent::boot();
 
-        /* If user is logged in and \Auth::user()->canManageBlogEtcPosts() == true, show any/all posts.
+        /* If user is logged in and \Auth::user()->canManageM4BlogPosts() == true, show any/all posts.
            otherwise (which will be for most users) it should only show published posts that have a posted_at
            time <= Carbon::now(). This sets it up: */
         static::addGlobalScope(new BlogCommentApprovedAndDefaultOrderScope());
@@ -37,12 +37,12 @@ class BlogEtcComment extends Model
 
 
     /**
-     * The associated BlogEtcPost
+     * The associated M4BlogPost
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function post()
     {
-        return $this->belongsTo(BlogEtcPost::class,"blog_etc_post_id");
+        return $this->belongsTo(M4BlogPost::class,"blog_etc_post_id");
     }
 
     /**

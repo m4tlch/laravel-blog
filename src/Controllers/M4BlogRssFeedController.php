@@ -5,15 +5,15 @@ namespace M4tlch\LaravelBlog\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Laravelium\Feed\Feed;
-use M4tlch\LaravelBlog\Models\BlogEtcPost;
+use M4tlch\LaravelBlog\Models\M4BlogPost;
 use M4tlch\LaravelBlog\Requests\FeedRequest;
 
 /**
- * Class BlogEtcRssFeedController.php
+ * Class M4BlogRssFeedController.php
  * All RSS feed viewing methods
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcRssFeedController extends Controller
+class M4BlogRssFeedController extends Controller
 {
     /**
      * @param Feed $feed
@@ -38,14 +38,14 @@ class BlogEtcRssFeedController extends Controller
      */
     protected function makeFreshFeed(Feed $feed)
     {
-        $posts = BlogEtcPost::orderBy("posted_at", "desc")
+        $posts = M4BlogPost::orderBy("posted_at", "desc")
             ->limit(config("blogetc.rssfeed.posts_to_show_in_rss_feed", 10))
             ->with("author")
             ->get();
 
         $this->setupFeed($feed, $posts);
 
-        /** @var BlogEtcPost $post */
+        /** @var M4BlogPost $post */
         foreach ($posts as $post) {
             $feed->add($post->title,
                 $post->author_string(),

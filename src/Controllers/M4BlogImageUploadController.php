@@ -5,29 +5,29 @@ namespace M4tlch\LaravelBlog\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use M4tlch\LaravelBlog\Middleware\UserCanManageBlogPosts;
-use M4tlch\LaravelBlog\Models\BlogEtcUploadedPhoto;
+use M4tlch\LaravelBlog\Models\M4BlogUploadedPhoto;
 use File;
 use M4tlch\LaravelBlog\Requests\UploadImageRequest;
 use M4tlch\LaravelBlog\Traits\UploadFileTrait;
 
 /**
- * Class BlogEtcAdminController
+ * Class M4BlogAdminController
  * @package M4tlch\LaravelBlog\Controllers
  */
-class BlogEtcImageUploadController extends Controller
+class M4BlogImageUploadController extends Controller
 {
 
     use UploadFileTrait;
 
     /**
-     * BlogEtcAdminController constructor.
+     * M4BlogAdminController constructor.
      */
     public function __construct()
     {
         $this->middleware(UserCanManageBlogPosts::class);
 
         if (!is_array(config("blogetc"))) {
-            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the BlogEtc package by running the php artisan publish:vendor command');
+            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
         }
 
 
@@ -46,7 +46,7 @@ class BlogEtcImageUploadController extends Controller
 
     public function index()
     {
-        return view("blogetc_admin::imageupload.index", ['uploaded_photos' => BlogEtcUploadedPhoto::orderBy("id", "desc")->paginate(10)]);
+        return view("blogetc_admin::imageupload.index", ['uploaded_photos' => M4BlogUploadedPhoto::orderBy("id", "desc")->paginate(10)]);
     }
 
     /**
@@ -80,7 +80,7 @@ class BlogEtcImageUploadController extends Controller
      *
      * @return array returns an array of details about each file resized.
      * @throws \Exception
-     * @todo - This class was added after the other main features, so this duplicates some code from the main blog post admin controller (BlogEtcAdminController). For next full release this should be tided up.
+     * @todo - This class was added after the other main features, so this duplicates some code from the main blog post admin controller (M4BlogAdminController). For next full release this should be tided up.
      */
     protected function processUploadedImages(UploadImageRequest $request)
     {
@@ -112,7 +112,7 @@ class BlogEtcImageUploadController extends Controller
 
 
         // store the image upload.
-        BlogEtcUploadedPhoto::create([
+        M4BlogUploadedPhoto::create([
             'image_title' => $request->get("image_title"),
             'source' => "ImageUpload",
             'uploader_id' => optional(\Auth::user())->id,

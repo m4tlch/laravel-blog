@@ -6,7 +6,7 @@
         <div>
             <h6 class="my-0"><a href="{{ route('blogetc.admin.index') }}">Admin Home</a>
              <span class="text-muted">(<?php
-                 $categoryCount = \M4tlch\LaravelBlog\Models\BlogEtcPost::count();
+                 $categoryCount = \M4tlch\LaravelBlog\Models\M4BlogPost::count();
 
                  echo $categoryCount . " " . str_plural("Post", $categoryCount);
 
@@ -36,7 +36,7 @@
             <h6 class="my-0"><a href="{{ route('blogetc.admin.comments.index') }}">Comments</a>
 
                             <span class="text-muted">(<?php
-                                $commentCount = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->count();
+                                $commentCount = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->count();
 
                                 echo $commentCount . " " . str_plural("Comment", $commentCount);
 
@@ -51,7 +51,7 @@
                     All Comments</a>
 
 
-                <?php $comment_approval_count = \M4tlch\LaravelBlog\Models\BlogEtcComment::withoutGlobalScopes()->where("approved", false)->count(); ?>
+                <?php $comment_approval_count = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where("approved", false)->count(); ?>
 
                 <a href='{{ route('blogetc.admin.comments.index') }}?waiting_for_approval=true'
                    class='list-group-item list-group-item-action  @if(\Request::route()->getName() === 'blogetc.admin.comments.index' && \Request::get("waiting_for_approval")) active @elseif($comment_approval_count>0) list-group-item-warning @endif  '><i
@@ -68,7 +68,7 @@
         <div>
             <h6 class="my-0"><a href="{{ route('blogetc.admin.categories.index') }}">Categories</a>
                     <span class="text-muted">(<?php
-                        $postCount = \M4tlch\LaravelBlog\Models\BlogEtcCategory::count();
+                        $postCount = \M4tlch\LaravelBlog\Models\M4BlogCategory::count();
                         echo $postCount . " " . str_plural("Category", $postCount);
                         ?>)</span>
             </h6>

@@ -4,9 +4,9 @@ namespace M4tlch\LaravelBlog\Requests;
 
 
 use Illuminate\Validation\Rule;
-use M4tlch\LaravelBlog\Models\BlogEtcCategory;
+use M4tlch\LaravelBlog\Models\M4BlogCategory;
 
-class UpdateBlogEtcCategoryRequest extends BaseBlogEtcCategoryRequest
+class UpdateM4BlogCategoryRequest extends BaseM4BlogCategoryRequest
 {
 
 
