@@ -1,11 +1,10 @@
-<h2><a href='https://webdevetc.com/'>WebDevEtc.com BlogEtc Admin Panel</a></h2>
 <p>Welcome to the admin panel for your blog posts.</p>
 
 
 <ul class="list-group mb-3">
     <li class="list-group-item justify-content-between lh-condensed">
         <div>
-            <h6 class="my-0"><a href="{{ route('blogetc.admin.index') }}">BlogEtc Admin Home</a>
+            <h6 class="my-0"><a href="{{ route('blogetc.admin.index') }}">Admin Home</a>
              <span class="text-muted">(<?php
                  $categoryCount = \M4tlch\LaravelBlog\Models\BlogEtcPost::count();
 
