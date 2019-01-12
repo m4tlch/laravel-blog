@@ -20,7 +20,7 @@ class CreateM4BlogPostRequest extends BaseM4BlogPostRequest
     public function rules()
     {
         $return = $this->baseBlogPostRules();
-        $return['slug'] [] = Rule::unique("blog_etc_posts", "slug");
+        $return['slug'] [] = Rule::unique("m4_blog_posts", "slug");
         return $return;
     }
 

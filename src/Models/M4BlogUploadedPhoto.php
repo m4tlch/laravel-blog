@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class M4BlogUploadedPhoto extends Model
 {
-    public $table = 'blog_etc_uploaded_photos';
+    public $table = 'm4_blog_uploaded_photos';
     public $casts = [
         'uploaded_images' => 'array',
     ];

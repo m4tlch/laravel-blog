@@ -13,7 +13,7 @@ class AddShortDescTextreaToM4Blog extends Migration
      */
     public function up()
     {
-        Schema::table('blog_etc_posts', function (Blueprint $table) {
+        Schema::table('m4_blog_posts', function (Blueprint $table) {
             $table->text("short_description")->nullable();
         });
 
@@ -27,7 +27,7 @@ class AddShortDescTextreaToM4Blog extends Migration
     public function down()
     {
 
-        Schema::table('blog_etc_posts', function (Blueprint $table) {
+        Schema::table('m4_blog_posts', function (Blueprint $table) {
             $table->dropColumn("short_description");
         });
     }

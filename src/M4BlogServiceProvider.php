@@ -27,10 +27,10 @@ class M4BlogServiceProvider extends ServiceProvider
 
 
         foreach ([
-                     '2018_05_28_224023_create_blog_etc_posts_table.php',
-                     '2018_09_16_224023_add_author_and_url_blog_etc_posts_table.php',
-                     '2018_09_26_085711_add_short_desc_textrea_to_blog_etc.php',
-                     '2018_09_27_122627_create_blog_etc_uploaded_photos_table.php'
+                     '2018_05_28_224023_create_m4_blog_posts_table.php',
+                     '2018_09_16_224023_add_author_and_url_m4_blog_posts_table.php',
+                     '2018_09_26_085711_add_short_desc_textrea_to_m4_blog.php',
+                     '2018_09_27_122627_create_m4_blog_uploaded_photos_table.php'
                  ] as $file) {
 
             $this->publishes([

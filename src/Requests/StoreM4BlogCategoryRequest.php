@@ -15,7 +15,7 @@ class StoreM4BlogCategoryRequest extends BaseM4BlogCategoryRequest
     public function rules()
     {
         $return = $this->baseCategoryRules();
-        $return['slug'] [] = Rule::unique("blog_etc_categories", "slug");
+        $return['slug'] [] = Rule::unique("m4_blog_categories", "slug");
         return $return;
     }
 }

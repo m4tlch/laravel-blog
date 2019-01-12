@@ -42,7 +42,7 @@ class M4BlogComment extends Model
      */
     public function post()
     {
-        return $this->belongsTo(M4BlogPost::class,"blog_etc_post_id");
+        return $this->belongsTo(M4BlogPost::class,"m4_blog_post_id");
     }
 
     /**

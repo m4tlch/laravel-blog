@@ -13,7 +13,7 @@ class AddAuthorAndUrlM4BlogPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('blog_etc_comments', function (Blueprint $table) {
+        Schema::table('m4_blog_comments', function (Blueprint $table) {
             $table->string("author_email")->nullable();
             $table->string("author_website")->nullable();
         });
@@ -28,7 +28,7 @@ class AddAuthorAndUrlM4BlogPostsTable extends Migration
     public function down()
     {
 
-        Schema::table('blog_etc_comments', function (Blueprint $table) {
+        Schema::table('m4_blog_comments', function (Blueprint $table) {
             $table->dropColumn("author_email");
             $table->dropColumn("author_website");
         });

@@ -21,7 +21,7 @@ class UpdateM4BlogPostRequest  extends BaseM4BlogPostRequest {
     public function rules()
     {
         $return = $this->baseBlogPostRules();
-        $return['slug'] [] = Rule::unique("blog_etc_posts", "slug")->ignore($this->route()->parameter("blogPostId"));
+        $return['slug'] [] = Rule::unique("m4_blog_posts", "slug")->ignore($this->route()->parameter("blogPostId"));
         return $return;
     }
 }

@@ -18,7 +18,7 @@ class UpdateM4BlogCategoryRequest extends BaseM4BlogCategoryRequest
     public function rules()
     {
         $return = $this->baseCategoryRules();
-        $return['slug'] [] = Rule::unique("blog_etc_categories", "slug")->ignore($this->route()->parameter("categoryId"));
+        $return['slug'] [] = Rule::unique("m4_blog_categories", "slug")->ignore($this->route()->parameter("categoryId"));
         return $return;
 
     }

@@ -17,7 +17,7 @@ class M4BlogCategory extends Model
      */
     public function posts()
     {
-        return $this->belongsToMany(M4BlogPost::class, 'blog_etc_post_categories');
+        return $this->belongsToMany(M4BlogPost::class, 'm4_blog_post_categories');
     }
 
     /**

@@ -122,7 +122,7 @@ class M4BlogPost extends Model implements SearchResultInterface
      */
     public function categories()
     {
-        return $this->belongsToMany(M4BlogCategory::class, 'blog_etc_post_categories');
+        return $this->belongsToMany(M4BlogCategory::class, 'm4_blog_post_categories');
     }
 
     /**

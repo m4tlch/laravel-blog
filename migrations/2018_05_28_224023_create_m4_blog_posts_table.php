@@ -13,7 +13,7 @@ class CreateM4BlogPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_etc_posts', function (Blueprint $table) {
+        Schema::create('m4_blog_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("user_id")->index()->nullable();
             $table->string("slug")->unique();
@@ -35,7 +35,7 @@ class CreateM4BlogPostsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('blog_etc_categories', function (Blueprint $table) {
+        Schema::create('m4_blog_categories', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string("category_name")->nullable();
@@ -47,22 +47,22 @@ class CreateM4BlogPostsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('blog_etc_post_categories', function (Blueprint $table) {
+        Schema::create('m4_blog_post_categories', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger("blog_etc_post_id")->index();
-            $table->foreign('blog_etc_post_id')->references('id')->on('blog_etc_posts')->onDelete("cascade");
+            $table->unsignedInteger("m4_blog_post_id")->index();
+            $table->foreign('m4_blog_post_id')->references('id')->on('m4_blog_posts')->onDelete("cascade");
 
-            $table->unsignedInteger("blog_etc_category_id")->index();
-            $table->foreign('blog_etc_category_id')->references('id')->on('blog_etc_categories')->onDelete("cascade");
+            $table->unsignedInteger("m4_blog_category_id")->index();
+            $table->foreign('m4_blog_category_id')->references('id')->on('m4_blog_categories')->onDelete("cascade");
         });
 
 
-        Schema::create('blog_etc_comments', function (Blueprint $table) {
+        Schema::create('m4_blog_comments', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger("blog_etc_post_id")->index();
-            $table->foreign('blog_etc_post_id')->references('id')->on('blog_etc_posts')->onDelete("cascade");
+            $table->unsignedInteger("m4_blog_post_id")->index();
+            $table->foreign('m4_blog_post_id')->references('id')->on('m4_blog_posts')->onDelete("cascade");
             $table->unsignedInteger("user_id")->nullable()->index()->comment("if user was logged in");
 
             $table->string("ip")->nullable()->comment("if enabled in the config file");
@@ -85,8 +85,8 @@ class CreateM4BlogPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_etc_post_categories');
-        Schema::dropIfExists('blog_etc_categories');
-        Schema::dropIfExists('blog_etc_posts');
+        Schema::dropIfExists('m4_blog_post_categories');
+        Schema::dropIfExists('m4_blog_categories');
+        Schema::dropIfExists('m4_blog_posts');
     }
 }

@@ -82,7 +82,7 @@ return [
         ],
 
         // you can add more fields here, but make sure that you create the relevant database columns too!
-        // They must be in the same format as the default ones - image_xxxxx (and this db column must exist on the blog_etc_posts table)
+        // They must be in the same format as the default ones - image_xxxxx (and this db column must exist on the m4_blog_posts table)
 
         /*
         'image_custom_example_size' => [ // << MAKE A DB COLUM WITH THIS NAME.
@@ -96,7 +96,7 @@ return [
             ],
         */
         // Create the custom db table by doing
-        //  php artisan make:migration --table=blog_etc_posts AddCustomBlogImageSize
+        //  php artisan make:migration --table=m4_blog_posts AddCustomBlogImageSize
         //   then adding in the up() method:
         //       $table->string("image_custom_example_size")->nullable();
         //    and in the down() method:
