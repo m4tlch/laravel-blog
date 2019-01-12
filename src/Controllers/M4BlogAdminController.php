@@ -33,8 +33,8 @@ class M4BlogAdminController extends Controller
     {
         $this->middleware(UserCanManageBlogPosts::class);
 
-        if (!is_array(config("blogetc"))) {
-            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
+        if (!is_array(config("m4blog"))) {
+            throw new \RuntimeException('The config/m4blog.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
         }
     }
 
@@ -49,7 +49,7 @@ class M4BlogAdminController extends Controller
         $posts = M4BlogPost::orderBy("posted_at", "desc")
             ->paginate(10);
 
-        return view("blogetc_admin::index", ['posts'=>$posts]);
+        return view("m4blog_admin::index", ['posts'=>$posts]);
     }
 
     /**
@@ -58,7 +58,7 @@ class M4BlogAdminController extends Controller
      */
     public function create_post()
     {
-        return view("blogetc_admin::posts.add_post");
+        return view("m4blog_admin::posts.add_post");
     }
 
     /**
@@ -97,7 +97,7 @@ class M4BlogAdminController extends Controller
     public function edit_post( $blogPostId)
     {
         $post = M4BlogPost::findOrFail($blogPostId);
-        return view("blogetc_admin::posts.edit_post")->withPost($post);
+        return view("m4blog_admin::posts.edit_post")->withPost($post);
     }
 
     /**
@@ -144,7 +144,7 @@ class M4BlogAdminController extends Controller
         // todo - delete the featured images?
         // At the moment it just issues a warning saying the images are still on the server.
 
-        return view("blogetc_admin::posts.deleted_post")
+        return view("m4blog_admin::posts.deleted_post")
             ->withDeletedPost($post);
 
     }
@@ -159,7 +159,7 @@ class M4BlogAdminController extends Controller
      */
     protected function processUploadedImages(BaseRequestInterface $request, M4BlogPost $new_blog_post)
     {
-        if (!config("blogetc.image_upload_enabled")) {
+        if (!config("m4blog.image_upload_enabled")) {
             // image upload was disabled
             return;
         }
@@ -170,7 +170,7 @@ class M4BlogAdminController extends Controller
         $uploaded_image_details = [];
 
 
-        foreach ((array)config('blogetc.image_sizes') as $size => $image_size_details) {
+        foreach ((array)config('m4blog.image_sizes') as $size => $image_size_details) {
 
             if ($image_size_details['enabled'] && $photo = $request->get_image_file($size)) {
                 // this image size is enabled, and
@@ -185,7 +185,7 @@ class M4BlogAdminController extends Controller
 
 
         // store the image upload.
-        // todo: link this to the blogetc_post row.
+        // todo: link this to the m4blog_post row.
         if (count(array_filter($uploaded_image_details))>0) {
             M4BlogUploadedPhoto::create([
                 'source' => "BlogFeaturedImage",

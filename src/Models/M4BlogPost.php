@@ -142,7 +142,7 @@ class M4BlogPost extends Model implements SearchResultInterface
      */
     public function url()
     {
-        return route("blogetc.single", $this->slug);
+        return route("m4blog.single", $this->slug);
     }
 
     /**
@@ -151,7 +151,7 @@ class M4BlogPost extends Model implements SearchResultInterface
      */
     public function edit_url()
     {
-        return route("blogetc.admin.edit_post", $this->id);
+        return route("m4blog.admin.edit_post", $this->id);
     }
 
     /**
@@ -194,7 +194,7 @@ class M4BlogPost extends Model implements SearchResultInterface
         $this->check_valid_image_size($size);
         $filename = $this->{"image_" . $size};
 
-        return asset(config("blogetc.blog_upload_dir", "blog_images") . "/" . $filename);
+        return asset(config("m4blog.blog_upload_dir", "blog_images") . "/" . $filename);
     }
 
     /**
@@ -235,23 +235,23 @@ class M4BlogPost extends Model implements SearchResultInterface
 
     public function post_body_output()
     {
-        if (config("blogetc.use_custom_view_files") && $this->use_view_file) {
+        if (config("m4blog.use_custom_view_files") && $this->use_view_file) {
             // using custom view files is enabled, and this post has a use_view_file set, so render it:
-            $return = view("blogetc::partials.use_view_file", ['post' => $this])->render();
+            $return = view("m4blog::partials.use_view_file", ['post' => $this])->render();
         } else {
             // just use the plain ->post_body
             $return = $this->post_body;
         }
 
 
-        if (!config("blogetc.echo_html")) {
+        if (!config("m4blog.echo_html")) {
             // if this is not true, then we should escape the output
-            if (config("blogetc.strip_html")) {
+            if (config("m4blog.strip_html")) {
                 $return = strip_tags($return);
             }
 
             $return = e($return);
-            if (config("blogetc.auto_nl2br")) {
+            if (config("m4blog.auto_nl2br")) {
                 $return = nl2br($return);
             }
         }
@@ -271,7 +271,7 @@ class M4BlogPost extends Model implements SearchResultInterface
     {
 
 
-        if (array_key_exists("image_" . $size, config("blogetc.image_sizes"))) {
+        if (array_key_exists("image_" . $size, config("m4blog.image_sizes"))) {
             return true;
         }
 
@@ -279,19 +279,19 @@ class M4BlogPost extends Model implements SearchResultInterface
 
         if (starts_with($size, "image_")) {
             // $size starts with image_, which is an error
-            /* the config/blogetc.php and the DB columns SHOULD have keys that start with image_$size
+            /* the config/m4blog.php and the DB columns SHOULD have keys that start with image_$size
             however when using methods such as image_url() or has_image() it SHOULD NOT start with 'image_'
 
             To put another way: :
-                in the config/blogetc.php : config("blogetc.image_sizes.image_medium")
-                in the database table:    : blogetc_posts.image_medium
+                in the config/m4blog.php : config("m4blog.image_sizes.image_medium")
+                in the database table:    : m4blog_posts.image_medium
                 when calling image_url()  : image_url("medium")
             */
-            throw new \InvalidArgumentException("Invalid image size ($size). M4BlogPost image size should not begin with 'image_'. Remove this from the start of $size. It *should* be in the blogetc.image_sizes config though!");
+            throw new \InvalidArgumentException("Invalid image size ($size). M4BlogPost image size should not begin with 'image_'. Remove this from the start of $size. It *should* be in the m4blog.image_sizes config though!");
         }
 
 
-        throw new \InvalidArgumentException("M4BlogPost image size should be 'large','medium','thumbnail' or another field as defined in config/blogetc.php. Provided size ($size) is not valid");
+        throw new \InvalidArgumentException("M4BlogPost image size should be 'large','medium','thumbnail' or another field as defined in config/m4blog.php. Provided size ($size) is not valid");
     }
 
 

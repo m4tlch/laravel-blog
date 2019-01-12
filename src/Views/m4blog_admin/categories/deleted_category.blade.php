@@ -1,4 +1,4 @@
-@extends("blogetc_admin::layouts.admin_layout")
+@extends("m4blog_admin::layouts.admin_layout")
 @section("content")
 
 

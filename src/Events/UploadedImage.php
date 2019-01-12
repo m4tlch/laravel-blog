@@ -16,7 +16,7 @@ class UploadedImage
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /** @var  M4BlogPost|null */
-    public $blogEtcPost;
+    public $m4BlogPost;
     /**
      * @var
      */
@@ -29,14 +29,14 @@ class UploadedImage
      * UploadedImage constructor.
      *
      * @param $image_filename - the new filename
-     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogPost $m4BlogPost
      * @param $image
      * @param $source string|null  the __METHOD__  firing this event (or other string)
      */
-    public function __construct(string $image_filename, $image,M4BlogPost $blogEtcPost=null,string $source='other')
+    public function __construct(string $image_filename, $image,M4BlogPost $m4BlogPost=null,string $source='other')
     {
         $this->image_filename = $image_filename;
-        $this->blogEtcPost=$blogEtcPost;
+        $this->m4BlogPost=$m4BlogPost;
         $this->image=$image;
         $this->source=$source;
     }

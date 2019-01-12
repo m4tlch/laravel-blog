@@ -13,10 +13,10 @@
     "news",
     "update"
   ],
-  "description": "Simple blog (with admin panel) for Laravel based on webdevetc/blogetc",
+  "description": "Simple blog (with admin panel) for Laravel based on webdevetc/m4blog",
   "license": "MIT",
   "support": {
-    "docs": "https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc"
+    "docs": "https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog"
   },
   "authors": [
     {

@@ -31,7 +31,7 @@ class M4BlogCommentWriterController extends Controller
     public function addNewComment(AddNewCommentRequest $request, $blog_post_slug)
     {
 
-        if (config("blogetc.comments.type_of_comments_to_show", "built_in") !== 'built_in') {
+        if (config("m4blog.comments.type_of_comments_to_show", "built_in") !== 'built_in') {
             throw new \RuntimeException("Built in comments are disabled");
         }
 
@@ -46,7 +46,7 @@ class M4BlogCommentWriterController extends Controller
 
         $new_comment = $this->createNewComment($request, $blog_post);
 
-        return view("blogetc::saved_comment", [
+        return view("m4blog::saved_comment", [
             'captcha' => $captcha,
             'blog_post' => $blog_post,
             'new_comment' => $new_comment
@@ -63,20 +63,20 @@ class M4BlogCommentWriterController extends Controller
     {
         $new_comment = new M4BlogComment($request->all());
 
-        if (config("blogetc.comments.save_ip_address")) {
+        if (config("m4blog.comments.save_ip_address")) {
             $new_comment->ip = $request->ip();
         }
-        if (config("blogetc.comments.ask_for_author_website")) {
+        if (config("m4blog.comments.ask_for_author_website")) {
             $new_comment->author_website = $request->get('author_website');
         }
-        if (config("blogetc.comments.ask_for_author_website")) {
+        if (config("m4blog.comments.ask_for_author_website")) {
             $new_comment->author_email = $request->get('author_email');
         }
-        if (config("blogetc.comments.save_user_id_if_logged_in", true) && Auth::check()) {
+        if (config("m4blog.comments.save_user_id_if_logged_in", true) && Auth::check()) {
             $new_comment->user_id = Auth::user()->id;
         }
 
-        $new_comment->approved = config("blogetc.comments.auto_approve_comments", true) ? true : false;
+        $new_comment->approved = config("m4blog.comments.auto_approve_comments", true) ? true : false;
 
         $blog_post->comments()->save($new_comment);
 

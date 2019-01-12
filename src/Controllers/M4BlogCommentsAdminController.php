@@ -40,7 +40,7 @@ class M4BlogCommentsAdminController extends Controller
         }
 
         $comments = $comments->paginate(100);
-        return view("blogetc_admin::comments.index")
+        return view("m4blog_admin::comments.index")
             ->withComments($comments
             );
     }

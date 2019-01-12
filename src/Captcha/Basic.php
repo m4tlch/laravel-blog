@@ -9,7 +9,7 @@ class Basic extends CaptchaAbstract
 
     public function __construct()
     {
-        if (!config("blogetc.captcha.basic_question") || !config("blogetc.captcha.basic_answers")) {
+        if (!config("m4blog.captcha.basic_question") || !config("m4blog.captcha.basic_answers")) {
             throw new \DomainException("Invalid question or answers for captcha");
         }
     }
@@ -31,7 +31,7 @@ class Basic extends CaptchaAbstract
      */
     public function view()
     {
-        return 'blogetc::captcha.basic';
+        return 'm4blog::captcha.basic';
     }
 
     /**
@@ -44,7 +44,7 @@ class Basic extends CaptchaAbstract
     public function rules()
     {
         $check_func = function ($attribute, $value, $fail) {
-            $answers = config("blogetc.captcha.basic_answers");
+            $answers = config("m4blog.captcha.basic_answers");
             // strtolower everything
             $value = strtolower(trim($value));
             $answers = strtolower($answers);

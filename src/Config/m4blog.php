@@ -1,6 +1,6 @@
 <?php
 
-//config for webdevetc/blogetc
+//config for webdevetc/m4blog
 
 return [
 
@@ -19,7 +19,7 @@ return [
 
 
     'memory_limit' => '2048M', // This is used when uploading images :
-    //                              @ini_set('memory_limit', config("blogetc.memory_limit"));
+    //                              @ini_set('memory_limit', config("m4blog.memory_limit"));
     //                            See PHP.net for detailso
     //                            Set to false to not set any value.
 
@@ -134,7 +134,7 @@ return [
         // options:
         //      'built_in' (default, uses own database for comments),
         //      'disqus' (uses https://disqus.com/, please enter further config options below),
-        //      'custom' (will load blogetc::partials.custom_comments, which you can copy to your vendor view dir to customise
+        //      'custom' (will load m4blog::partials.custom_comments, which you can copy to your vendor view dir to customise
         //      'disabled' (turn comments off)
         'type_of_comments_to_show' => 'disabled', // default: disabled
 

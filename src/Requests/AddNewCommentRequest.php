@@ -9,7 +9,7 @@ class AddNewCommentRequest extends FormRequest
 
     public function authorize()
     {
-        if (config("blogetc.comments.type_of_comments_to_show") === 'built_in') {
+        if (config("m4blog.comments.type_of_comments_to_show") === 'built_in') {
             // anyone is allowed to submit a comment, to return true always.
             return true;
         }
@@ -34,7 +34,7 @@ class AddNewCommentRequest extends FormRequest
         ];
 
         // do we need author name?
-        if (\Auth::check() && config("blogetc.comments.save_user_id_if_logged_in", true)) {
+        if (\Auth::check() && config("m4blog.comments.save_user_id_if_logged_in", true)) {
             // is logged in, so we don't need an author name (it won't get used)
             $return['author_name'][] = 'nullable';
         } else {
@@ -43,9 +43,9 @@ class AddNewCommentRequest extends FormRequest
         }
 
         // is captcha enabled? If so, get the rules from its class.
-        if (config("blogetc.captcha.captcha_enabled")) {
+        if (config("m4blog.captcha.captcha_enabled")) {
             /** @var string $captcha_class */
-            $captcha_class = config("blogetc.captcha.captcha_type");
+            $captcha_class = config("m4blog.captcha.captcha_type");
 
             /** @var \M4tlch\LaravelBlog\Interfaces\CaptchaInterface $captcha */
             $captcha = new $captcha_class;
@@ -54,13 +54,13 @@ class AddNewCommentRequest extends FormRequest
         }
 
         // in case you need to implement something custom, you can use this...
-        if (config("blogetc.comments.rules") && is_callable(config("blogetc.comments.rules"))) {
+        if (config("m4blog.comments.rules") && is_callable(config("m4blog.comments.rules"))) {
             /** @var callable $func */
-            $func = config('blogetc.comments.rules');
+            $func = config('m4blog.comments.rules');
             $return = $func($return);
         }
 
-        if (config("blogetc.comments.require_author_email")) {
+        if (config("m4blog.comments.require_author_email")) {
             $return['author_email'][] = 'required';
         }
 

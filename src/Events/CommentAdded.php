@@ -17,18 +17,18 @@ class CommentAdded
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /** @var  M4BlogPost */
-    public $blogEtcPost;
+    public $m4BlogPost;
     /** @var  M4BlogComment */
     public $newComment;
 
     /**
      * CommentAdded constructor.
-     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogPost $m4BlogPost
      * @param M4BlogComment $newComment
      */
-    public function __construct(M4BlogPost $blogEtcPost, M4BlogComment $newComment)
+    public function __construct(M4BlogPost $m4BlogPost, M4BlogComment $newComment)
     {
-        $this->blogEtcPost=$blogEtcPost;
+        $this->m4BlogPost=$m4BlogPost;
         $this->newComment=$newComment;
     }
 

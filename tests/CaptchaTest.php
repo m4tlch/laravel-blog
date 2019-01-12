@@ -31,32 +31,32 @@ class CaptchaTest extends \Tests\TestCase
 
 
                 // testing CORRECT answer (should return null)
-                \Config::set('blogetc.captcha.basic_answers', "ignoreme,dark,ignoreme2");
+                \Config::set('m4blog.captcha.basic_answers', "ignoreme,dark,ignoreme2");
                 $this->assertNull($rule('correct1', 'dark', function () {
                     return "lookingforthis";
                 }));
 
                 // testing WRONG answer
-                \Config::set('blogetc.captcha.basic_answers', "ignoreme,dark,ignoreme2");
+                \Config::set('m4blog.captcha.basic_answers', "ignoreme,dark,ignoreme2");
                 $this->assertEquals($rule('wrong1', 'light', function () {
                     return "lookingforthis";
                 }), "lookingforthis");
 
                 // testing CORRECT answer
-                \Config::set('blogetc.captcha.basic_answers', "bLAcK");
+                \Config::set('m4blog.captcha.basic_answers', "bLAcK");
                 $this->assertNull($rule('wrong1', 'black', function () {
                     return "lookingforthis";
                 }));
 
                 // testing CORRECT answer
-                \Config::set('blogetc.captcha.basic_answers', "bLAcK");
+                \Config::set('m4blog.captcha.basic_answers', "bLAcK");
                 $this->assertNull($rule('wrong1', ' black', function () {
                     return "lookingforthis";
                 }));
 
 
                 // testing CORRECT answer
-                \Config::set('blogetc.captcha.basic_answers', "ignoreme, BLACK , jgnoreme2");
+                \Config::set('m4blog.captcha.basic_answers', "ignoreme, BLACK , jgnoreme2");
                 $this->assertNull($rule('wrong1', ' black', function () {
                     return "lookingforthis";
                 }));

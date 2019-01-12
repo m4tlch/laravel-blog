@@ -1,6 +1,6 @@
 <div class='add_comment_area'>
     <h5 class='text-center'>Add a comment</h5>
-    <form method='post' action='{{route("blogetc.comments.add_new_comment", $post->slug)}}'>
+    <form method='post' action='{{route("m4blog.comments.add_new_comment", $post->slug)}}'>
         @csrf
 
 
@@ -21,7 +21,7 @@
         <div class='container-fluid'>
             <div class='row'>
 
-                @if(config("blogetc.comments.save_user_id_if_logged_in", true) == false || !\Auth::check())
+                @if(config("m4blog.comments.save_user_id_if_logged_in", true) == false || !\Auth::check())
 
                     <div class='col'>
                         <div class="form-group ">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    @if(config("blogetc.comments.ask_for_author_email"))
+                    @if(config("m4blog.comments.ask_for_author_email"))
                         <div class='col'>
                             <div class="form-group">
                                 <label id="author_email_label" for="author_email">Your Email
@@ -57,7 +57,7 @@
                 @endif
 
 
-                @if(config("blogetc.comments.ask_for_author_website"))
+                @if(config("m4blog.comments.ask_for_author_website"))
                     <div class='col'>
                         <div class="form-group">
                             <label id="author_website_label" for="author_website">Your Website

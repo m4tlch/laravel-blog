@@ -1,4 +1,4 @@
-@extends("blogetc_admin::layouts.admin_layout")
+@extends("m4blog_admin::layouts.admin_layout")
 @section("content")
 
 
@@ -80,7 +80,7 @@
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Edit Post</a>
                 <form onsubmit="return confirm('Are you sure you want to delete this blog post?\n You cannot undo this action!');"
-                      method='post' action='{{route("blogetc.admin.destroy_post", $post->id)}}' class='float-right'>
+                      method='post' action='{{route("m4blog.admin.destroy_post", $post->id)}}' class='float-right'>
                     @csrf
                     <input name="_method" type="hidden" value="DELETE"/>
                     <button type='submit' class='btn btn-danger btn-sm'>

@@ -1,6 +1,6 @@
 {{--Used on the index page (so shows a small summary--}}
 {{--See the guide on nikacrm.com for how to copy these files to your /resources/views/ directory--}}
-{{--https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views--}}
+{{--https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#guide_to_views--}}
 
 <div class="" style='max-width:600px; margin: 50px auto; background: #fffbea;border-radius:3px;padding:0;' >
 

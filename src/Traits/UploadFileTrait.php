@@ -20,14 +20,14 @@ trait UploadFileTrait
 
     /**
      * Small method to increase memory limit.
-     * This can be defined in the config file. If blogetc.memory_limit is false/null then it won't do anything.
+     * This can be defined in the config file. If m4blog.memory_limit is false/null then it won't do anything.
      * This is needed though because if you upload a large image it'll not work
      */
     protected function increaseMemoryLimit()
     {
         // increase memory - change this setting in config file
-        if (config("blogetc.memory_limit")) {
-            @ini_set('memory_limit', config("blogetc.memory_limit"));
+        if (config("m4blog.memory_limit")) {
+            @ini_set('memory_limit', config("m4blog.memory_limit"));
         }
     }
 
@@ -76,7 +76,7 @@ trait UploadFileTrait
      */
     protected function image_destination_path()
     {
-        $path = public_path('/' . config("blogetc.blog_upload_dir"));
+        $path = public_path('/' . config("m4blog.blog_upload_dir"));
         $this->check_image_destination_path_is_writable($path);
         return $path;
     }
@@ -122,7 +122,7 @@ trait UploadFileTrait
         }
 
         // save image
-        $resizedImage->save($destinationPath . '/' . $image_filename, config("blogetc.image_quality", 80));
+        $resizedImage->save($destinationPath . '/' . $image_filename, config("m4blog.image_quality", 80));
 
         // fireevent
         event(new UploadedImage($image_filename, $resizedImage, $new_blog_post, __METHOD__));

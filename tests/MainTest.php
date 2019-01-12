@@ -20,11 +20,11 @@ class MainTest extends \Tests\TestCase
     Testing the author_email, author_website.
 
     /blog/...
-        blogetc.index                       YES
-        blogetc.feed                        YES
-        blogetc.view_category               no - but this is basically blogetc.index
-        blogetc.single                      YES
-        blogetc.comments.add_new_comment    YES - tested multiple times with/without basic captcha on/off/correct/incorrect.
+        m4blog.index                       YES
+        m4blog.feed                        YES
+        m4blog.view_category               no - but this is basically m4blog.index
+        m4blog.single                      YES
+        m4blog.comments.add_new_comment    YES - tested multiple times with/without basic captcha on/off/correct/incorrect.
                                                 Also tested with diff configs for comment form:
                                                     disabled
                                                     built_in
@@ -32,27 +32,27 @@ class MainTest extends \Tests\TestCase
                                                     custom
 
     /blog_admin/...
-        blogetc.admin.index                 YES
-        blogetc.admin.create_post           no - but is just a form
-        blogetc.admin.store_post            YES
-        blogetc.admin.edit_post             YES - but no extra checks
-        blogetc.admin.update_post           YES
-        blogetc.admin.destroy_post          YES
+        m4blog.admin.index                 YES
+        m4blog.admin.create_post           no - but is just a form
+        m4blog.admin.store_post            YES
+        m4blog.admin.edit_post             YES - but no extra checks
+        m4blog.admin.update_post           YES
+        m4blog.admin.destroy_post          YES
 
      /blog_admin/comments/...
 
-            blogetc.admin.comments.index    YES
-            blogetc.admin.comments.approve  YES
-            blogetc.admin.comments.delete   YES
+            m4blog.admin.comments.index    YES
+            m4blog.admin.comments.approve  YES
+            m4blog.admin.comments.delete   YES
 
      /blog_admin/categories/...
 
-            blogetc.admin.categories.index
-            blogetc.admin.categories.create_category    no - but is just a form
-            blogetc.admin.categories.store_category     YES
-            blogetc.admin.categories.edit_category      no - but is just a form
-            blogetc.admin.categories.update_category
-            blogetc.admin.categories.destroy_category   YES
+            m4blog.admin.categories.index
+            m4blog.admin.categories.create_category    no - but is just a form
+            m4blog.admin.categories.store_category     YES
+            m4blog.admin.categories.edit_category      no - but is just a form
+            m4blog.admin.categories.update_category
+            m4blog.admin.categories.destroy_category   YES
 
 
 
@@ -63,16 +63,16 @@ class MainTest extends \Tests\TestCase
 
     public function testFilesArePresent()
     {
-        $this->assertFileExists(config_path("blogetc.php"), "/config/blogetc.php should exist - currently no file with that filename is found");
-        $this->assertTrue(is_array(include(config_path("blogetc.php"))), "/config/blogetc.php should exist - currently no file with that filename is found");
+        $this->assertFileExists(config_path("m4blog.php"), "/config/m4blog.php should exist - currently no file with that filename is found");
+        $this->assertTrue(is_array(include(config_path("m4blog.php"))), "/config/m4blog.php should exist - currently no file with that filename is found");
     }
 
     public function testImageSizesAreSane()
     {
 
-        $this->assertTrue(count(config("blogetc.image_sizes")) >=  3);
+        $this->assertTrue(count(config("m4blog.image_sizes")) >=  3);
 
-        foreach (config("blogetc.image_sizes") as $image_key => $image_info) {
+        foreach (config("m4blog.image_sizes") as $image_key => $image_info) {
 
             $this->assertArrayHasKey("w", $image_info);
             $this->assertArrayHasKey("h", $image_info);
@@ -109,7 +109,7 @@ class MainTest extends \Tests\TestCase
     public function testCanSeeAdminPanel()
     {
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
         \Auth::logout();
         // without a logged in user, should give error
@@ -138,7 +138,7 @@ class MainTest extends \Tests\TestCase
         $response->assertSee("Add Category");
 
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 //        $user=$this->create_admin_user();
 
         $this->assertTrue($user->canManageM4BlogPosts());
@@ -174,7 +174,7 @@ class MainTest extends \Tests\TestCase
 
         $user = $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
         $this->assertTrue($user->canManageM4BlogPosts());
 
@@ -206,7 +206,7 @@ class MainTest extends \Tests\TestCase
 
         $user = $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
         $this->assertTrue($user->canManageM4BlogPosts());
 
@@ -246,7 +246,7 @@ class MainTest extends \Tests\TestCase
 
         $user = $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
         $this->assertTrue($user->canManageM4BlogPosts());
 
@@ -267,13 +267,13 @@ class MainTest extends \Tests\TestCase
 
 
         // check we don't see it at moment
-        $response = $this->get(config("blogetc.blog_prefix", "blog"));
+        $response = $this->get(config("m4blog.blog_prefix", "blog"));
         $response->assertDontSee($new_object_vals['slug']);
 
         // must clear the cache, as the /feed is cached
         \Artisan::call('cache:clear');
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog") . "/feed");
+        $response = $this->get(config("m4blog.blog_prefix", "blog") . "/feed");
         $response->assertDontSee($new_object_vals['slug']);
 
         $response = $this->post($admin_panel_url . "/add_post", $new_object_vals);
@@ -285,7 +285,7 @@ class MainTest extends \Tests\TestCase
 
         // logout - so we are guest user
         \Auth::logout();
-        $response = $this->get(config("blogetc.blog_prefix", "blog"));
+        $response = $this->get(config("m4blog.blog_prefix", "blog"));
         // if we see the slug (which is str_random()) we can safely assume that there was a link to the post, so it is working ok. of course it would depend a bit on your template but this should work.
         $response->assertSee($new_object_vals['slug']);
 
@@ -293,14 +293,14 @@ class MainTest extends \Tests\TestCase
         // must clear the cache, as the /feed is cached
         \Artisan::call('cache:clear');
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog") . "/feed");
+        $response = $this->get(config("m4blog.blog_prefix", "blog") . "/feed");
         $response->assertSee($new_object_vals['slug']);
         $response->assertSee($new_object_vals['title']);
 
 
         // now check single post is viewable
 
-        $response = $this->get(route("blogetc.single", $new_object_vals['slug']));
+        $response = $this->get(route("m4blog.single", $new_object_vals['slug']));
         $response->assertStatus(200);
         $response->assertSee($new_object_vals['slug']);
         $response->assertSee($new_object_vals['title']);
@@ -313,7 +313,7 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         list($new_object_vals, $search_for_obj) = $this->prepare_post_creation();
 
         $new_object_vals['is_published'] = false;
@@ -328,14 +328,14 @@ class MainTest extends \Tests\TestCase
         // must log out, as the admin user can see posts dated in future
         \Auth::logout();
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog"));
+        $response = $this->get(config("m4blog.blog_prefix", "blog"));
         // if we see the slug (which is str_random()) we can safely assume that there was a link to the post, so it is working ok. of course it would depend a bit on your template but this should work.
         $response->assertDontSee($new_object_vals['slug']);
 
 
         // now check single post is viewable
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog") . "/" . $new_object_vals['slug']);
+        $response = $this->get(config("m4blog.blog_prefix", "blog") . "/" . $new_object_vals['slug']);
         $response->assertStatus(404);
         $response->assertDontSee($new_object_vals['slug']);
         $response->assertDontSee($new_object_vals['title']);
@@ -348,7 +348,7 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         list($new_object_vals, $search_for_obj) = $this->prepare_post_creation();
 
         $new_object_vals['posted_at'] = \Carbon\Carbon::now()->addMonths(12);
@@ -363,14 +363,14 @@ class MainTest extends \Tests\TestCase
         // must log out, as the admin user can see posts dated in future
         \Auth::logout();
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog"));
+        $response = $this->get(config("m4blog.blog_prefix", "blog"));
         // if we see the slug (which is str_random()) we can safely assume that there was a link to the post, so it is working ok. of course it would depend a bit on your template but this should work.
         $response->assertDontSee($new_object_vals['slug']);
 
 
         // now check single post is viewable
 
-        $response = $this->get(config("blogetc.blog_prefix", "blog") . "/" . $new_object_vals['slug']);
+        $response = $this->get(config("m4blog.blog_prefix", "blog") . "/" . $new_object_vals['slug']);
         $response->assertStatus(404);
         $response->assertDontSee($new_object_vals['slug']);
         $response->assertDontSee($new_object_vals['title']);
@@ -383,16 +383,16 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        \Config::set('blogetc.comments.auto_approve_comments', false);
-        \Config::set('blogetc.captcha.captcha_enabled', true);
-        \Config::set('blogetc.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
+        \Config::set('m4blog.comments.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.captcha_enabled', true);
+        \Config::set('m4blog.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
         $captcha = new \M4tlch\LaravelBlog\Captcha\Basic();
-        \Config::set('blogetc.captcha.basic_question', "a test question");
-        \Config::set('blogetc.captcha.basic_answers', "answer1,answer2");
+        \Config::set('m4blog.captcha.basic_question', "a test question");
+        \Config::set('m4blog.captcha.basic_answers', "answer1,answer2");
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         // to verify this was added to database. Use a different variable, so we can add things (like _token) and still be able to assertDatabaseHas later.
@@ -412,7 +412,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        \Config::set('blogetc.comments.type_of_comments_to_show', 'built_in');
+        \Config::set('m4blog.comments.type_of_comments_to_show', 'built_in');
 
 
         $comment_detail = [
@@ -422,7 +422,7 @@ class MainTest extends \Tests\TestCase
             $captcha->captcha_field_name() => "wronganswer1", // << WRONG CAPTCHA
         ];
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
-        $response = $this->post(config("blogetc.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
+        $response = $this->post(config("m4blog.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
         $response->assertStatus(302);
 
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
@@ -435,7 +435,7 @@ class MainTest extends \Tests\TestCase
             // << NO CAPTCHA FIELD
         ];
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
-        $response = $this->post(config("blogetc.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
+        $response = $this->post(config("m4blog.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
         $response->assertStatus(302);
 
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
@@ -448,11 +448,11 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        \Config::set('blogetc.comments.type_of_comments_to_show', "disabled");
+        \Config::set('m4blog.comments.type_of_comments_to_show', "disabled");
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
@@ -480,11 +480,11 @@ class MainTest extends \Tests\TestCase
     }
     public function testCreatePostThenSetCommentsToDisqusAndCheckDisqusJSIsShown()
     {
-        \Config::set('blogetc.comments.type_of_comments_to_show', "disqus");
+        \Config::set('m4blog.comments.type_of_comments_to_show', "disqus");
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
@@ -510,11 +510,11 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        \Config::set('blogetc.comments.type_of_comments_to_show', "custom");
+        \Config::set('m4blog.comments.type_of_comments_to_show', "custom");
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         $newblogpost = new \M4tlch\LaravelBlog\Models\M4BlogPost;
@@ -541,16 +541,16 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        \Config::set('blogetc.comments.auto_approve_comments', false);
-        \Config::set('blogetc.captcha.captcha_enabled', true);
-        \Config::set('blogetc.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
+        \Config::set('m4blog.comments.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.captcha_enabled', true);
+        \Config::set('m4blog.captcha.captcha_type', \M4tlch\LaravelBlog\Captcha\Basic::class);
         $captcha = new \M4tlch\LaravelBlog\Captcha\Basic();
-        \Config::set('blogetc.captcha.basic_question', "a test question");
-        \Config::set('blogetc.captcha.basic_answers', "answer1,answer2");
+        \Config::set('m4blog.captcha.basic_question', "a test question");
+        \Config::set('m4blog.captcha.basic_answers', "answer1,answer2");
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         // to verify this was added to database. Use a different variable, so we can add things (like _token) and still be able to assertDatabaseHas later.
@@ -569,7 +569,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        \Config::set('blogetc.comments.type_of_comments_to_show', 'built_in');
+        \Config::set('m4blog.comments.type_of_comments_to_show', 'built_in');
 
 
         $comment_detail = [
@@ -579,22 +579,22 @@ class MainTest extends \Tests\TestCase
             $captcha->captcha_field_name() => "AnsWer2",
         ];
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
-        $response = $this->post(config("blogetc.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
+        $response = $this->post(config("m4blog.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
         $response->assertStatus(200);
 
-        \Config::set('blogetc.captcha.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.auto_approve_comments', false);
 
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
         $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
-        $response = $this->get(route("blogetc.admin.comments.index"));
+        $response = $this->get(route("m4blog.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
 
 
         // approve it:
-        $response = $this->patch(route("blogetc.admin.comments.approve", $justAddedRow->id), [
+        $response = $this->patch(route("m4blog.admin.comments.approve", $justAddedRow->id), [
             '_token' => csrf_token(),
         ]);
         // check it was approved
@@ -607,12 +607,12 @@ class MainTest extends \Tests\TestCase
 
     public function testCreatePostThenCheckCanCreateCommentThenApproveComment()
     {
-        \Config::set('blogetc.comments.auto_approve_comments', false);
-        \Config::set('blogetc.captcha.captcha_enabled', false);
+        \Config::set('m4blog.comments.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.captcha_enabled', false);
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         // to verify this was added to database. Use a different variable, so we can add things (like _token) and still be able to assertDatabaseHas later.
@@ -631,8 +631,8 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        \Config::set('blogetc.comments.type_of_comments_to_show', 'built_in');
-        \Config::set('blogetc.captcha.captcha_enabled', false);
+        \Config::set('m4blog.comments.type_of_comments_to_show', 'built_in');
+        \Config::set('m4blog.captcha.captcha_enabled', false);
 
 
         $comment_detail = [
@@ -641,23 +641,23 @@ class MainTest extends \Tests\TestCase
             'comment' => str_random(),
         ];
         $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
-        $response = $this->post(config("blogetc.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
+        $response = $this->post(config("m4blog.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
 
         $response->assertStatus(200);
 
-        \Config::set('blogetc.captcha.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.auto_approve_comments', false);
 
         $this->assertDatabaseHas('blog_etc_comments', ['approved' => false, 'author_name' => $comment_detail['author_name']]);
 
 
         $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
-        $response = $this->get(route("blogetc.admin.comments.index"));
+        $response = $this->get(route("m4blog.admin.comments.index"));
         $response->assertSee($justAddedRow->author_name);
 
 
         // approve it:
-        $response = $this->patch(route("blogetc.admin.comments.approve", $justAddedRow->id), [
+        $response = $this->patch(route("m4blog.admin.comments.approve", $justAddedRow->id), [
             '_token' => csrf_token(),
         ]);
         // check it was approved
@@ -670,12 +670,12 @@ class MainTest extends \Tests\TestCase
 
     public function testCreatePostThenCheckCanCreateCommentThenDeleteComment()
     {
-        \Config::set('blogetc.comments.auto_approve_comments', false);
-        \Config::set('blogetc.captcha.captcha_enabled', false);
+        \Config::set('m4blog.comments.auto_approve_comments', false);
+        \Config::set('m4blog.captcha.captcha_enabled', false);
 
         $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $new_object_vals = $this->generate_basic_blog_post_with_random_data();
 
         // to verify this was added to database. Use a different variable, so we can add things (like _token) and still be able to assertDatabaseHas later.
@@ -694,14 +694,14 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseHas('blog_etc_posts', $search_for_obj);
 
 
-        if (config("blogetc.comments.type_of_comments_to_show") === 'built_in') {
+        if (config("m4blog.comments.type_of_comments_to_show") === 'built_in') {
             $comment_detail = [
                 '_token' => csrf_token(),
                 'author_name' => str_random(),
                 'comment' => str_random(),
             ];
             $this->assertDatabaseMissing('blog_etc_comments', ['author_name' => $comment_detail['author_name']]);
-            $response = $this->post(config("blogetc.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
+            $response = $this->post(config("m4blog.blog_prefix", "blog") . "/save_comment/" . $new_object_vals['slug'], $comment_detail);
             $response->assertSessionHasNoErrors();
             $response->assertStatus(200);
 
@@ -711,12 +711,12 @@ class MainTest extends \Tests\TestCase
             $justAddedRow = \M4tlch\LaravelBlog\Models\M4BlogComment::withoutGlobalScopes()->where('author_name', $comment_detail['author_name'])->firstOrFail();
 
             // check the just added row exists...
-            $response = $this->get(route("blogetc.admin.comments.index"));
+            $response = $this->get(route("m4blog.admin.comments.index"));
             $response->assertSee($justAddedRow->author_name);
 
 
             // delete it:
-            $response = $this->delete(route("blogetc.admin.comments.delete", $justAddedRow->id), [
+            $response = $this->delete(route("m4blog.admin.comments.delete", $justAddedRow->id), [
                 '_token' => csrf_token(),
             ]);
             // check it was deleted (it will deleted if approved)
@@ -727,7 +727,7 @@ class MainTest extends \Tests\TestCase
 
 
         } else {
-            dump("NOT TESTING COMMENT FEATURE, as config(\"blogetc.comments.type_of_comments_to_show\") is not set to 'built_in')");
+            dump("NOT TESTING COMMENT FEATURE, as config(\"m4blog.comments.type_of_comments_to_show\") is not set to 'built_in')");
         }
 
     }
@@ -739,7 +739,7 @@ class MainTest extends \Tests\TestCase
 
         $user = $this->create_admin_user();
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
         $this->assertTrue($user->canManageM4BlogPosts());
 
@@ -777,7 +777,7 @@ class MainTest extends \Tests\TestCase
 
     public function testCanCreateCategory()
     {
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $this->create_admin_user();
         // now lets create a category
         $new_cat_vals = [
@@ -800,7 +800,7 @@ class MainTest extends \Tests\TestCase
     {
 
 
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
 
 
         $this->create_admin_user();
@@ -842,7 +842,7 @@ class MainTest extends \Tests\TestCase
 
         // send the request to save the changes
         $response = $this->patch(
-            route("blogetc.admin.categories.update_category", $justCreatedRow->id),
+            route("m4blog.admin.categories.update_category", $justCreatedRow->id),
             $new_object_vals
         );
 
@@ -858,7 +858,7 @@ class MainTest extends \Tests\TestCase
 
     public function testCanDeleteCategory()
     {
-        $admin_panel_url = config("blogetc.admin_prefix", "blog_admin");
+        $admin_panel_url = config("m4blog.admin_prefix", "blog_admin");
         $this->create_admin_user();
         // now lets create a category
         $new_cat_vals = [
@@ -958,7 +958,7 @@ class MainTest extends \Tests\TestCase
         $this->assertDatabaseMissing('blog_etc_posts', $search_for_obj);
 
         // check we don't see it at moment
-        $response = $this->get(config("blogetc.blog_prefix", "blog"));
+        $response = $this->get(config("m4blog.blog_prefix", "blog"));
         $response->assertDontSee($new_object_vals['slug']);
         return array($new_object_vals, $search_for_obj);
     }

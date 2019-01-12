@@ -24,7 +24,7 @@
             <input type="text" class="form-control" id="blog_slug" aria-describedby="blog_slug_help" name='slug'
                    value="{{old("slug",$post->slug)}}">
             <small id="blog_slug_help" class="form-text text-muted">The slug (leave blank to auto generate) -
-                i.e. {{route("blogetc.single","")}}/<u><em>this_part</em></u></small>
+                i.e. {{route("m4blog.single","")}}/<u><em>this_part</em></u></small>
         </div>
 
     </div>
@@ -73,7 +73,7 @@
 
 <div class="form-group">
     <label for="blog_post_body">Post Body
-        @if(config("blogetc.echo_html"))
+        @if(config("m4blog.echo_html"))
             (HTML)
         @else
          (Html will be escaped)
@@ -93,7 +93,7 @@
 
 
 
-@if(config("blogetc.use_custom_view_files",true))
+@if(config("m4blog.use_custom_view_files",true))
     <div class="form-group">
         <label for="blog_use_view_file">Custom View File</label>
         <input type="text" class="form-control" id="blog_use_view_file" aria-describedby="blog_use_view_file_help"
@@ -129,7 +129,7 @@
     <small id="blog_short_description_help" class="form-text text-muted">Short description (optional - only useful if you use in your template views)</small>
 </div>
 
-@if(config("blogetc.image_upload_enabled",true))
+@if(config("m4blog.image_upload_enabled",true))
 
     <div class='bg-white pt-4 px-4 pb-0 my-2 mb-4 rounded border'>
         <style>
@@ -140,7 +140,7 @@
         <h4>Featured Images</h4>
 
 
-        @foreach(config("blogetc.image_sizes") as $size_key =>$size_info)
+        @foreach(config("m4blog.image_sizes") as $size_key =>$size_info)
             <div class="form-group mb-4 p-2
         @if($loop->iteration>1)
                     image_upload_other_sizes
@@ -174,7 +174,7 @@
 
     </div>
 @else
-    <div class='alert alert-warning'>Image uploads were disabled in blogetc.php config</div>
+    <div class='alert alert-warning'>Image uploads were disabled in m4blog.php config</div>
 @endif
 
 
@@ -199,7 +199,7 @@
 
         <div class='col-md-12 my-3 text-center'>
 
-            <em><a target='_blank' href='{{route("blogetc.admin.categories.create_category")}}'><i class="fa fa-external-link" aria-hidden="true"></i>
+            <em><a target='_blank' href='{{route("m4blog.admin.categories.create_category")}}'><i class="fa fa-external-link" aria-hidden="true"></i>
                       Add new categories
                     here</a></em>
         </div>

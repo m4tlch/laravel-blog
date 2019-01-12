@@ -12,7 +12,7 @@
          {{--is logged in + canManageM4BlogPosts() == true, so show a detailed error--}}
         <div class='alert alert-danger'>Custom blog post blade view file
                         (<code>{{$post->full_view_file_path()}}</code>) not found. <a
-                    href='https://nikacrm.com/laravel/packages/help-documentation/laravel-blog-package-blogetc'
+                    href='https://nikacrm.com/laravel/packages/help-documentation/laravel-blog-package-m4blog'
                     target='_blank'>See Laravel Blog Package help here</a>.
                     </div>
 

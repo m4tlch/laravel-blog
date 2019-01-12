@@ -6,7 +6,7 @@
         <div class="card-header">
             {{$comment->author()}}
 
-            @if(config("blogetc.comments.ask_for_author_website") && $comment->author_website)
+            @if(config("m4blog.comments.ask_for_author_website") && $comment->author_website)
                 (<a href='{{$comment->author_website}}' target='_blank' rel='noopener'>website</a>)
             @endif
 
@@ -25,8 +25,8 @@
     <div class='alert alert-info'>No comments yet! Why don't you be the first?</div>
 @endforelse
 
-@if(count($comments)> config("blogetc.comments.max_num_of_comments_to_show",500) - 1)
-    <p><em>Only the first {{config("blogetc.comments.max_num_of_comments_to_show",500)}} comments are
+@if(count($comments)> config("m4blog.comments.max_num_of_comments_to_show",500) - 1)
+    <p><em>Only the first {{config("m4blog.comments.max_num_of_comments_to_show",500)}} comments are
             shown.</em>
     </p>
 @endif

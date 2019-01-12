@@ -35,7 +35,7 @@ class M4BlogCategoryAdminController extends Controller
     public function index(){
 
         $categories = M4BlogCategory::orderBy("category_name")->paginate(25);
-        return view("blogetc_admin::categories.index")->withCategories($categories);
+        return view("m4blog_admin::categories.index")->withCategories($categories);
     }
 
     /**
@@ -44,7 +44,7 @@ class M4BlogCategoryAdminController extends Controller
      */
     public function create_category(){
 
-        return view("blogetc_admin::categories.add_category");
+        return view("m4blog_admin::categories.add_category");
 
     }
 
@@ -61,7 +61,7 @@ class M4BlogCategoryAdminController extends Controller
         Helpers::flash_message("Saved new category");
 
         event(new CategoryAdded($new_category));
-        return redirect( route('blogetc.admin.categories.index') );
+        return redirect( route('m4blog.admin.categories.index') );
     }
 
     /**
@@ -71,7 +71,7 @@ class M4BlogCategoryAdminController extends Controller
      */
     public function edit_category($categoryId){
         $category = M4BlogCategory::findOrFail($categoryId);
-        return view("blogetc_admin::categories.edit_category")->withCategory($category);
+        return view("m4blog_admin::categories.edit_category")->withCategory($category);
     }
 
     /**
@@ -108,7 +108,7 @@ class M4BlogCategoryAdminController extends Controller
         event(new CategoryWillBeDeleted($category));
         $category->delete();
 
-        return view ("blogetc_admin::categories.deleted_category");
+        return view ("m4blog_admin::categories.deleted_category");
 
     }
 

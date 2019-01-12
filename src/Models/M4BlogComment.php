@@ -62,7 +62,7 @@ class M4BlogComment extends Model
     public function author()
     {
         if ($this->user_id) {
-            $field = config("blogetc.comments.user_field_for_author_name","name");
+            $field = config("m4blog.comments.user_field_for_author_name","name");
             return optional($this->user)->$field;
         }
 

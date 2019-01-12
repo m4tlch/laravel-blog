@@ -3,7 +3,7 @@
 /**
  * Trait UsesCaptcha
  *
- * For instantiating the config("blogetc.captcha.captcha_type") object.
+ * For instantiating the config("m4blog.captcha.captcha_type") object.
  *
  * @package M4tlch\LaravelBlog\Captcha
  */
@@ -15,13 +15,13 @@ trait UsesCaptcha
      */
     private function getCaptchaObject()
     {
-        if (!config("blogetc.captcha.captcha_enabled")) {
+        if (!config("m4blog.captcha.captcha_enabled")) {
             return null;
         }
 
         // else: captcha is enabled
         /** @var string $captcha_class */
-        $captcha_class = config("blogetc.captcha.captcha_type");
+        $captcha_class = config("m4blog.captcha.captcha_type");
         return new $captcha_class;
     }
 

@@ -7,9 +7,9 @@
 This is [WebDevEtc's](https://nikacrm.com/) M4Blog package. It has everything you need to quickly and easily add a blog to your laravel app.
 
 
-## FOR 5 MINUTE INSTALLATION GUIDE (with video guide), PLEASE VISIT [THE INSTALL GUIDE HERE](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide)
+## FOR 5 MINUTE INSTALLATION GUIDE (with video guide), PLEASE VISIT [THE INSTALL GUIDE HERE](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#install_guide)
 
-[Install guide](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) • [Packagist](https://packagist.org/packages/webdevetc/blogetc) << MAKE SURE YOU FOLLOW THE INSTURCTIONS. They're simple, but must be followed.
+[Install guide](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#install_guide) • [Packagist](https://packagist.org/packages/webdevetc/m4blog) << MAKE SURE YOU FOLLOW THE INSTURCTIONS. They're simple, but must be followed.
 
 ## Features
 
@@ -43,8 +43,8 @@ This is [WebDevEtc's](https://nikacrm.com/) M4Blog package. It has everything yo
   - Create / edit post categories
   - Manage (approve/delete) submitted comments
 - Allows each blog post to have featured images uploaded (you can define the actual dimensions) - in large, medium, thumbnail sizes
-- fully configurable via its `config/blogetc.php` config file.
-- **Includes all required view files, works straight away with no additional setup.** All view files (Blade files) use Bootstrap 4, and very clean HTML (easy to get your head around). You can easily override any view file by putting files in your `/resources/views/vendor/blogetc/` directory
+- fully configurable via its `config/m4blog.php` config file.
+- **Includes all required view files, works straight away with no additional setup.** All view files (Blade files) use Bootstrap 4, and very clean HTML (easy to get your head around). You can easily override any view file by putting files in your `/resources/views/vendor/m4blog/` directory
 - **Built in comments (using the database)**, can auto approve or require admin approval (comment moderation).
   - Other options include using [Disqus](http://disqus.com/) comments or disabling comments.
 - Includes unit tests.
@@ -78,24 +78,24 @@ This is [WebDevEtc's](https://nikacrm.com/) M4Blog package. It has everything yo
 
 ## How to install M4Blog to your laravel app
 
-Please see our [M4Blog Laravel Blog Package Documentation/install guide](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#install_guide) for install instructions. (It is very simple - done via composer/artisan commands, plus adding one method to your \App\User model (`canManageM4BlogPosts()` which should return `true` if this user can manage the blog).
+Please see our [M4Blog Laravel Blog Package Documentation/install guide](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#install_guide) for install instructions. (It is very simple - done via composer/artisan commands, plus adding one method to your \App\User model (`canManageM4BlogPosts()` which should return `true` if this user can manage the blog).
 
 
 ## How to customise the blog views/templates
 
-This is easy to do, and further detail can be found in our  [M4Blog Laravel Blog Package Documentation](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views).
+This is easy to do, and further detail can be found in our  [M4Blog Laravel Blog Package Documentation](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#guide_to_views).
 
-After doing the correct `vendor:publish`, all of the default template files will be found in /resources/views/vendor/blogetc/ and are easy to edit to match your needs.
+After doing the correct `vendor:publish`, all of the default template files will be found in /resources/views/vendor/m4blog/ and are easy to edit to match your needs.
 
 ## Routes
 
-It will auto set all required routes (both public facing, and admin backend). There are some config options (such as changing the /blog/ url to something else), which can be done in the blogetc.php file.
+It will auto set all required routes (both public facing, and admin backend). There are some config options (such as changing the /blog/ url to something else), which can be done in the m4blog.php file.
 
 ## Config options
 
-Please see the [M4Blog config option documentation here](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#config_options) for details.
+Please see the [M4Blog config option documentation here](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#config_options) for details.
 
-All config options have comments which describe what they do. Please just refer to the `blogetc.php` file in your /config/ dir.
+All config options have comments which describe what they do. Please just refer to the `m4blog.php` file in your /config/ dir.
 
 ## Events
 
@@ -107,7 +107,7 @@ Add these (and an Event Listener) to your `EventServiceProvider.php` file to mak
 
 There is a built in captcha (anti spam comment) system built in, which will be easy for you to replace with your own implementation.
 
-  Please see [our Captcha docs](https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#captcha) for  more details.
+  Please see [our Captcha docs](https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#captcha) for  more details.
 
 ## TODO
 
@@ -128,7 +128,7 @@ This is a list of features or things that I want to eventually get round to addi
 ## Recent changes:
 
 1) Added full text search and search views. You have to enable it in the config file (see latest config file)
-2) Need more than the 3 default image sizes? Add more in the config/blogetc.php file, add the database column for it and it'll work!
+2) Need more than the 3 default image sizes? Add more in the config/m4blog.php file, add the database column for it and it'll work!
 
 ## Having problems, something is not working?
 

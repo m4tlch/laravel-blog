@@ -36,16 +36,16 @@ class M4BlogReaderController extends Controller
 
             // at the moment we handle this special case (viewing a category) by hard coding in the following two lines.
             // You can easily override this in the view files.
-            \View::share('blogetc_category', $category); // so the view can say "You are viewing $CATEGORYNAME category posts"
+            \View::share('m4blog_category', $category); // so the view can say "You are viewing $CATEGORYNAME category posts"
             $title = 'Viewing posts in ' . $category->category_name . " category"; // hardcode title here...
         } else {
             $posts = M4BlogPost::query();
         }
 
         $posts = $posts->orderBy("posted_at", "desc")
-            ->paginate(config("blogetc.per_page", 10));
+            ->paginate(config("m4blog.per_page", 10));
 
-        return view("blogetc::index", [
+        return view("m4blog::index", [
             'posts' => $posts,
             'title' => $title,
         ]);
@@ -60,7 +60,7 @@ class M4BlogReaderController extends Controller
      */
     public function search(Request $request)
     {
-        if (!config("blogetc.search.search_enabled")) {
+        if (!config("m4blog.search.search_enabled")) {
             throw new \Exception("Search is disabled");
         }
         $query = $request->get("s");
@@ -69,7 +69,7 @@ class M4BlogReaderController extends Controller
 
         \View::share("title", "Search results for " . e($query));
 
-        return view("blogetc::search", ['query' => $query, 'search_results' => $search_results]);
+        return view("m4blog::search", ['query' => $query, 'search_results' => $search_results]);
 
     }
 
@@ -105,7 +105,7 @@ class M4BlogReaderController extends Controller
             $captcha->runCaptchaBeforeShowingPosts($request, $blog_post);
         }
 
-        return view("blogetc::single_post", [
+        return view("m4blog::single_post", [
             'post' => $blog_post,
             // the default scope only selects approved comments, ordered by id
             'comments' => $blog_post->comments()

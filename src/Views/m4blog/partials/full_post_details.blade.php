@@ -12,9 +12,9 @@
 <p class="blog_body_content">
     {!! $post->post_body_output() !!}
 
-    {{--@if(config("blogetc.use_custom_view_files")  && $post->use_view_file)--}}
+    {{--@if(config("m4blog.use_custom_view_files")  && $post->use_view_file)--}}
     {{--                                // use a custom blade file for the output of those blog post--}}
-    {{--   @include("blogetc::partials.use_view_file")--}}
+    {{--   @include("m4blog::partials.use_view_file")--}}
     {{--@else--}}
     {{--   {!! $post->post_body !!}        // unsafe, echoing the plain html/js--}}
     {{--   {{ $post->post_body }}          // for safe escaping --}}
@@ -25,5 +25,5 @@
 
 Posted <strong>{{$post->posted_at->diffForHumans()}}</strong>
 
-@includeWhen($post->author,"blogetc::partials.author",['post'=>$post])
-@includeWhen($post->categories,"blogetc::partials.categories",['post'=>$post])
+@includeWhen($post->author,"m4blog::partials.author",['post'=>$post])
+@includeWhen($post->categories,"m4blog::partials.categories",['post'=>$post])

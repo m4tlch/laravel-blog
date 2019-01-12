@@ -16,15 +16,15 @@ class BlogPostEdited
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /** @var  M4BlogPost */
-    public $blogEtcPost;
+    public $m4BlogPost;
 
     /**
      * BlogPostEdited constructor.
-     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogPost $m4BlogPost
      */
-    public function __construct(M4BlogPost $blogEtcPost)
+    public function __construct(M4BlogPost $m4BlogPost)
     {
-        $this->blogEtcPost=$blogEtcPost;
+        $this->m4BlogPost=$m4BlogPost;
     }
 
 }

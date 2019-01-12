@@ -52,8 +52,8 @@ class Helpers
     {
 
 
-        return '<link rel="alternate" type="application/atom+xml" title="Atom RSS Feed" href="' . e(route("blogetc.feed")) . '?type=atom" />
-  <link rel="alternate" type="application/rss+xml" title="XML RSS Feed" href="' . e(route("blogetc.feed")) . '?type=rss" />
+        return '<link rel="alternate" type="application/atom+xml" title="Atom RSS Feed" href="' . e(route("m4blog.feed")) . '?type=atom" />
+  <link rel="alternate" type="application/rss+xml" title="XML RSS Feed" href="' . e(route("m4blog.feed")) . '?type=rss" />
   ';
 
 
@@ -65,7 +65,7 @@ class Helpers
      * @deprecated
      */
     public static function image_sizes(){
-        return config("blogetc.image_sizes");
+        return config("m4blog.image_sizes");
     }
 
 }

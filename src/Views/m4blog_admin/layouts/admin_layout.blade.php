@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" crossorigin="anonymous">
 
     <!-- Styles -->
-    @if(file_exists(public_path("blogetc_admin_css.css")))
-        <link href="{{ asset('blogetc_admin_css.css') }}" rel="stylesheet">
+    @if(file_exists(public_path("m4blog_admin_css.css")))
+        <link href="{{ asset('m4blog_admin_css.css') }}" rel="stylesheet">
     @else
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         {{--Edited your css/app.css file? Uncomment these lines to use plain bootstrap:--}}
@@ -61,7 +61,7 @@
                     <!-- Authentication Links -->
 
 
-                    <li class='nav-item px-2'><a class='nav-link' href='{{route("blogetc.index")}}'>Blog home</a></li>
+                    <li class='nav-item px-2'><a class='nav-link' href='{{route("m4blog.index")}}'>Blog home</a></li>
 
 
                     <li class="nav-item ">
@@ -81,7 +81,7 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-md-3'>
-                    @include("blogetc_admin::layouts.sidebar")
+                    @include("m4blog_admin::layouts.sidebar")
                 </div>
                 <div class='col-md-9 '>
 
@@ -120,7 +120,7 @@
 </div>
 
 
-@if( config("blogetc.use_wysiwyg") && config("blogetc.echo_html") && (in_array( \Request::route()->getName() ,[ 'blogetc.admin.create_post' , 'blogetc.admin.edit_post'  ])))
+@if( config("m4blog.use_wysiwyg") && config("m4blog.echo_html") && (in_array( \Request::route()->getName() ,[ 'm4blog.admin.create_post' , 'm4blog.admin.edit_post'  ])))
     <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"
             integrity="sha384-BpuqJd0Xizmp9PSp/NTwb/RSBCHK+rVdGWTrwcepj1ADQjNYPWT2GDfnfAr6/5dn"
             crossorigin="anonymous"></script>

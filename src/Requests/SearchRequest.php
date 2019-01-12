@@ -8,7 +8,7 @@ class SearchRequest extends FormRequest
 {
     public function authorize()
     {
-        if (config("blogetc.search.search_enabled")) {
+        if (config("m4blog.search.search_enabled")) {
             // anyone is allowed to submit a comment, to return true always.
             return true;
         }

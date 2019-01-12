@@ -57,7 +57,7 @@ abstract class BaseM4BlogPostRequest extends BaseRequest
 
 
         // is use_custom_view_files true?
-        if (config('blogetc.use_custom_view_files')) {
+        if (config('m4blog.use_custom_view_files')) {
             $return['use_view_file'] = ['nullable', 'string', 'alpha_num', 'min:1', 'max:75',];
         } else {
             // use_view_file is disabled, so give an empty if anything is submitted via this function:
@@ -65,8 +65,8 @@ abstract class BaseM4BlogPostRequest extends BaseRequest
         }
 
         // some additional rules for uploaded images
-        foreach ((array)config('blogetc.image_sizes') as $size => $image_detail) {
-            if ($image_detail['enabled'] && config("blogetc.image_upload_enabled")) {
+        foreach ((array)config('m4blog.image_sizes') as $size => $image_detail) {
+            if ($image_detail['enabled'] && config("m4blog.image_upload_enabled")) {
                 $return[$size] = ['nullable', 'image',];
             } else {
                 // was not enabled (or all images are disabled), so show an error if it was submitted:

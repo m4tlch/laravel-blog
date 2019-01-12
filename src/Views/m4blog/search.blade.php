@@ -1,7 +1,7 @@
 @extends("layouts.app",['title'=>$title])
 @section("content")
 
-    {{--https://nikacrm.com/laravel/packages/blogetc-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-blogetc#guide_to_views--}}
+    {{--https://nikacrm.com/laravel/packages/m4blog-blog-system-for-your-laravel-app/help-documentation/laravel-blog-package-m4blog#guide_to_views--}}
 
     <div class='row'>
         <div class='col-sm-12'>
@@ -12,7 +12,7 @@
                 <?php $post = $result->indexable; ?>
                 @if($post && is_a($post,\M4tlch\LaravelBlog\Models\M4BlogPost::class))
                     <h2>Search result #{{$loop->count}}</h2>
-                    @include("blogetc::partials.index_loop")
+                    @include("m4blog::partials.index_loop")
                 @else
 
                     <div class='alert alert-danger'>Unable to show this search result - unknown type</div>
@@ -22,7 +22,7 @@
             @endforelse
 
 
-            @include("blogetc::sitewide.search_form")
+            @include("m4blog::sitewide.search_form")
 
         </div>
     </div>

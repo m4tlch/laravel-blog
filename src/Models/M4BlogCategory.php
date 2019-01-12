@@ -26,7 +26,7 @@ class M4BlogCategory extends Model
      */
     public function url()
     {
-        return route("blogetc.view_category", $this->slug);
+        return route("m4blog.view_category", $this->slug);
     }
 
     /**
@@ -35,7 +35,7 @@ class M4BlogCategory extends Model
      */
     public function edit_url()
     {
-        return route("blogetc.admin.categories.edit_category", $this->id);
+        return route("m4blog.admin.categories.edit_category", $this->id);
     }
 
 //    public function scopeApproved($query)

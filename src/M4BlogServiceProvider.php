@@ -16,12 +16,12 @@ class M4BlogServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        if (config("blogetc.search.search_enabled") == false) {
+        if (config("m4blog.search.search_enabled") == false) {
             // if search is disabled, don't allow it to sync.
             ModelObserver::disableSyncingFor(M4BlogPost::class);
         }
 
-        if (config("blogetc.include_default_routes", true)) {
+        if (config("m4blog.include_default_routes", true)) {
             include(__DIR__ . "/routes.php");
         }
 
@@ -40,9 +40,9 @@ class M4BlogServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/Views/blogetc' => base_path('resources/views/vendor/blogetc'),
-            __DIR__ . '/Config/blogetc.php' => config_path('blogetc.php'),
-            __DIR__ . '/css/blogetc_admin_css.css' => public_path('blogetc_admin_css.css'),
+            __DIR__ . '/Views/m4blog' => base_path('resources/views/vendor/m4blog'),
+            __DIR__ . '/Config/m4blog.php' => config_path('m4blog.php'),
+            __DIR__ . '/css/m4blog_admin_css.css' => public_path('m4blog_admin_css.css'),
         ]);
 
 
@@ -56,12 +56,12 @@ class M4BlogServiceProvider extends ServiceProvider
     public function register()
     {
 
-        // for the admin backend views ( view("blogetc_admin::BLADEFILE") )
-        $this->loadViewsFrom(__DIR__ . "/Views/blogetc_admin", 'blogetc_admin');
+        // for the admin backend views ( view("m4blog_admin::BLADEFILE") )
+        $this->loadViewsFrom(__DIR__ . "/Views/m4blog_admin", 'm4blog_admin');
 
-        // for public facing views (view("blogetc::BLADEFILE")):
-        // if you do the vendor:publish, these will be copied to /resources/views/vendor/blogetc anyway
-        $this->loadViewsFrom(__DIR__ . "/Views/blogetc", 'blogetc');
+        // for public facing views (view("m4blog::BLADEFILE")):
+        // if you do the vendor:publish, these will be copied to /resources/views/vendor/m4blog anyway
+        $this->loadViewsFrom(__DIR__ . "/Views/m4blog", 'm4blog');
     }
 
 }

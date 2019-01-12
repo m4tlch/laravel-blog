@@ -12,11 +12,11 @@ abstract class CaptchaAbstract implements CaptchaInterface
      * executed when viewing single post
      *
      * @param Request $request
-     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogPost $m4BlogPost
      *
      * @return void
      */
-    public function runCaptchaBeforeShowingPosts(Request $request, M4BlogPost $blogEtcPost)
+    public function runCaptchaBeforeShowingPosts(Request $request, M4BlogPost $m4BlogPost)
     {
         // no code here to run! Maybe in your subclass you can make use of this?
         /*
@@ -37,11 +37,11 @@ abstract class CaptchaAbstract implements CaptchaInterface
      * executed when posting new comment
      *
      * @param Request $request
-     * @param M4BlogPost $blogEtcPost
+     * @param M4BlogPost $m4BlogPost
      *
      * @return void
      */
-    public function runCaptchaBeforeAddingComment(Request $request, M4BlogPost $blogEtcPost)
+    public function runCaptchaBeforeAddingComment(Request $request, M4BlogPost $m4BlogPost)
     {
         // no code here to run! Maybe in your subclass you can make use of this?
     }

@@ -23,13 +23,13 @@ class M4BlogRssFeedController extends Controller
     protected function setupFeed(Feed $feed, $posts)
     {
         $feed->title = config("app.name") . ' Blog';
-        $feed->description = config("blogetc.rssfeed.description", "Our blog RSS feed");
-        $feed->link = route('blogetc.index');
+        $feed->description = config("m4blog.rssfeed.description", "Our blog RSS feed");
+        $feed->link = route('m4blog.index');
         $feed->setDateFormat('carbon');
         $feed->pubdate = isset($posts[0]) ? $posts[0]->posted_at : Carbon::now()->subYear(10);
-        $feed->lang = config("blogetc.rssfeed.language", "en");
-        $feed->setShortening(config("blogetc.rssfeed.should_shorten_text", true)); // true or false
-        $feed->setTextLimit(config("blogetc.rssfeed.text_limit", 100));
+        $feed->lang = config("m4blog.rssfeed.language", "en");
+        $feed->setShortening(config("m4blog.rssfeed.should_shorten_text", true)); // true or false
+        $feed->setTextLimit(config("m4blog.rssfeed.text_limit", 100));
     }
 
 
@@ -39,7 +39,7 @@ class M4BlogRssFeedController extends Controller
     protected function makeFreshFeed(Feed $feed)
     {
         $posts = M4BlogPost::orderBy("posted_at", "desc")
-            ->limit(config("blogetc.rssfeed.posts_to_show_in_rss_feed", 10))
+            ->limit(config("m4blog.rssfeed.posts_to_show_in_rss_feed", 10))
             ->with("author")
             ->get();
 
@@ -73,8 +73,8 @@ class M4BlogRssFeedController extends Controller
         $user_or_guest = \Auth::check() ? \Auth::user()->id : 'guest';
 
         $feed->setCache(
-            config("blogetc.rssfeed.cache_in_minutes", 60),
-            "blogetc-" . $request->getFeedType() . $user_or_guest
+            config("m4blog.rssfeed.cache_in_minutes", 60),
+            "m4blog-" . $request->getFeedType() . $user_or_guest
         );
 
         if (!$feed->isCached()) {

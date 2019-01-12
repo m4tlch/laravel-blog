@@ -16,15 +16,15 @@ class CategoryAdded
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /** @var  M4BlogCategory */
-    public $blogEtcCategory;
+    public $m4BlogCategory;
 
     /**
      * CategoryAdded constructor.
-     * @param M4BlogCategory $blogEtcCategory
+     * @param M4BlogCategory $m4BlogCategory
      */
-    public function __construct(M4BlogCategory $blogEtcCategory)
+    public function __construct(M4BlogCategory $m4BlogCategory)
     {
-        $this->blogEtcCategory=$blogEtcCategory;
+        $this->m4BlogCategory=$m4BlogCategory;
     }
 
 }

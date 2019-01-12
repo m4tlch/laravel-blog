@@ -1,4 +1,4 @@
-@extends("blogetc_admin::layouts.admin_layout")
+@extends("m4blog_admin::layouts.admin_layout")
 @section("content")
 
 
@@ -7,7 +7,7 @@
     <p>You can use this to upload images.</p>
 
 
-    <form method='post' action='{{route("blogetc.admin.images.store")}}' enctype="multipart/form-data">
+    <form method='post' action='{{route("m4blog.admin.images.store")}}' enctype="multipart/form-data">
 
         @csrf
 
@@ -37,12 +37,12 @@
             <label >Sizes to convert to</label>
 
             <div>
-                <input type='checkbox' name='sizes_to_upload[blogetc_full_size]' value='true' checked id='size_blogetc_full_size'>
-            <label for='size_blogetc_full_size'>Full size (no resizing)</label>
+                <input type='checkbox' name='sizes_to_upload[m4blog_full_size]' value='true' checked id='size_m4blog_full_size'>
+            <label for='size_m4blog_full_size'>Full size (no resizing)</label>
                 </div>
 
 
-            @foreach((array)config('blogetc.image_sizes') as $size => $image_size_details)
+            @foreach((array)config('m4blog.image_sizes') as $size => $image_size_details)
             <div>
                 <input type='checkbox' name='sizes_to_upload[{{$size}}]' value='true' checked id='size_{{$size}}'>
                 <label for='size_{{$size}}'>{{$image_size_details['name']}} - {{$image_size_details['w']}} x {{$image_size_details['h']}}px</label>

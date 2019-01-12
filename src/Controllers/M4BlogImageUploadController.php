@@ -26,13 +26,13 @@ class M4BlogImageUploadController extends Controller
     {
         $this->middleware(UserCanManageBlogPosts::class);
 
-        if (!is_array(config("blogetc"))) {
-            throw new \RuntimeException('The config/blogetc.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
+        if (!is_array(config("m4blog"))) {
+            throw new \RuntimeException('The config/m4blog.php does not exist. Publish the vendor files for the M4Blog package by running the php artisan publish:vendor command');
         }
 
 
-        if (!config("blogetc.image_upload_enabled")) {
-            throw new \RuntimeException("The blogetc.php config option has not enabled image uploading");
+        if (!config("m4blog.image_upload_enabled")) {
+            throw new \RuntimeException("The m4blog.php config option has not enabled image uploading");
         }
 
 
@@ -46,7 +46,7 @@ class M4BlogImageUploadController extends Controller
 
     public function index()
     {
-        return view("blogetc_admin::imageupload.index", ['uploaded_photos' => M4BlogUploadedPhoto::orderBy("id", "desc")->paginate(10)]);
+        return view("m4blog_admin::imageupload.index", ['uploaded_photos' => M4BlogUploadedPhoto::orderBy("id", "desc")->paginate(10)]);
     }
 
     /**
@@ -56,7 +56,7 @@ class M4BlogImageUploadController extends Controller
      */
     public function create()
     {
-        return view("blogetc_admin::imageupload.create", []);
+        return view("m4blog_admin::imageupload.create", []);
     }
 
     /**
@@ -70,7 +70,7 @@ class M4BlogImageUploadController extends Controller
     {
         $processed_images = $this->processUploadedImages($request);
 
-        return view("blogetc_admin::imageupload.uploaded", ['images' => $processed_images]);
+        return view("m4blog_admin::imageupload.uploaded", ['images' => $processed_images]);
     }
 
     /**
@@ -93,13 +93,13 @@ class M4BlogImageUploadController extends Controller
         $sizes_to_upload = $request->get("sizes_to_upload");
 
         // now upload a full size - this is a special case, not in the config file. We only store full size images in this class, not as part of the featured blog image uploads.
-        if (isset($sizes_to_upload['blogetc_full_size']) && $sizes_to_upload['blogetc_full_size'] === 'true') {
+        if (isset($sizes_to_upload['m4blog_full_size']) && $sizes_to_upload['m4blog_full_size'] === 'true') {
 
-            $uploaded_image_details['blogetc_full_size'] = $this->UploadAndResize(null, $request->get("image_title"), 'fullsize', $photo);
+            $uploaded_image_details['m4blog_full_size'] = $this->UploadAndResize(null, $request->get("image_title"), 'fullsize', $photo);
 
         }
 
-        foreach ((array)config('blogetc.image_sizes') as $size => $image_size_details) {
+        foreach ((array)config('m4blog.image_sizes') as $size => $image_size_details) {
 
             if (!isset($sizes_to_upload[$size]) || !$sizes_to_upload[$size] || !$image_size_details['enabled']) {
                 continue;
