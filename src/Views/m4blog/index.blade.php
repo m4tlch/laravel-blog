@@ -42,12 +42,10 @@
             <div class='text-center  col-sm-4 mx-auto'>
                 {{$posts->appends( [] )->links()}}
             </div>
-
-
-
-
-                @include("m4blog::sitewide.search_form")
-
+                @if(config("m4blog.search.search_enabled","false") === 'true')
+                    @include("m4blog::sitewide.search_form")
+                @endif
+              
         </div>
     </div>
 @endsection
